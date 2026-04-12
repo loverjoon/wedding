@@ -37,6 +37,25 @@
             transform: translateY(0);
         }
 
+        /* 공통 타이틀 스타일 (중복 제거) */
+        .eng-title {
+            font-family: 'Crimson Pro', serif;
+            font-size: 1.1rem;
+            color: #ffb6b6;
+            letter-spacing: 3px;
+            margin-bottom: 8px;
+            font-weight: 400;
+            text-align: center;
+            display: block;
+        }
+        .ko-title {
+            font-size: 1.3rem;
+            color: #f79e9e;
+            margin-bottom: 25px;
+            text-align: center;
+            font-weight: 500;
+        }
+
         /* 1. 메인 커버 */
         .main-cover {
             text-align: center;
@@ -60,38 +79,9 @@
         }
         .main-img-box img { width: 100%; height: 100%; object-fit: cover; }
         .main-cover .date-text { font-size: 1rem; color: #555; }
+        .main-cover .venue-text { font-size: 0.9rem; margin-top: 5px; opacity: 0.6; }
 
         .divider { width: 1px; height: 30px; background-color: #eee; margin: 40px auto; }
-
-        /* 모든 섹션의 영문 제목(LOCATION, GALLERY, GUESTBOOK, ACCOUNT) 색상 통일 */
-        .location .eng-title,
-        .section-gallery .eng-title,
-        .section-guestbook .eng-title,
-        .account-section .eng-title,
-        .greeting .eng-title,
-        .main-cover .title-eng {
-            font-family: 'Crimson Pro', serif;
-            font-size: 1.1rem;
-            color: #ffb6b6 !important; /* 강제로 핑크색 적용 */
-            letter-spacing: 3px;
-            margin-bottom: 8px;
-            font-weight: 400;
-            text-align: center;
-            display: block;
-        }
-
-        /* 국문 제목(오시는 길, 웨딩 갤러리, 방명록, 마음 전하실 곳) 색상 통일 */
-        .location .ko-title,
-        .section-gallery .ko-title,
-        .section-guestbook .ko-title,
-        .account-section .ko-title {
-            font-size: 1.3rem;
-            color: #f79e9e; /* 깔끔한 검은색 */
-            margin-bottom: 25px;
-            text-align: center;
-            font-weight: 500;
-        }       
-        .greeting .ko-title { font-size: 1.3rem; color: #f79e9e; margin-bottom: 25px; }
 
         /* 2. 초대말 */
         .greeting { text-align: center; padding: 0 35px; }
@@ -125,116 +115,51 @@
         .map-area { width: 100%; height: 300px; overflow: hidden; border-top: 1px solid #f2f2f2; border-bottom: 1px solid #f2f2f2; }
         .root_daum_roughmap { border: none !important; width: 100% !important; }
         .sketch-btn { display: inline-flex; align-items: center; justify-content: center; width: 85%; padding: 15px 0; background: #fff; border: 1px solid #eee; border-radius: 12px; color: #555; font-size: 0.95rem; text-decoration: none; margin-top: 20px; margin-bottom: 40px; gap: 8px; }
+        .sketch-btn img { width: 20px; height: 20px; object-fit: contain; }
         .navi-section { text-align: left; padding: 0 25px; }
         .navi-buttons { display: flex; gap: 10px; margin-bottom: 40px; }
         .navi-item { 
-            flex: 1; 
-            display: flex; 
-            flex-direction: column; /* 아이콘과 글자를 세로로 배치 */
-            align-items: center; 
-            justify-content: center; 
-            gap: 8px; 
-            padding: 15px 0; 
-            background: #fff; 
-            border: 1px solid #eee; 
-            border-radius: 12px; 
-            font-size: 0.8rem; 
-            color: #555; 
-            text-decoration: none;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+            flex: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; 
+            gap: 8px; padding: 15px 0; background: #fff; border: 1px solid #eee; border-radius: 12px; 
+            font-size: 0.8rem; color: #555; text-decoration: none; box-shadow: 0 2px 4px rgba(0,0,0,0.02);
         }
-        .navi-item img {
-            width: 32px; /* 아이콘 크기 */
-            height: 32px;
-            object-fit: contain;
-        }
+        .navi-item img { width: 32px; height: 32px; object-fit: contain; }
         .transport-section { padding: 0 25px 60px; text-align: left; }
         .transport-item { margin-bottom: 35px; }
         .t-title { font-size: 1rem; font-weight: bold; color: #333; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
         .t-content { font-size: 0.9rem; color: #666; line-height: 1.8; padding-left: 28px; }
 
-       /* 갤러리 그리드 설정 수정 */
-        .section-gallery { 
-            padding: 60px 20px; 
-            text-align: center; 
-            box-sizing: border-box; /* 패딩이 너비에 포함되도록 설정 */
-        }
-        
-        /* 갤러리 그리드 설정 수정 */
-        .gallery-grid { 
-            display: grid; 
-            grid-template-columns: repeat(3, 1fr); 
-            gap: 8px; 
-            margin-top: 30px; 
-            width: 100%;
-        }
+        /* 5. 웨딩 갤러리 */
+        .section-gallery { padding: 60px 20px; text-align: center; box-sizing: border-box; }
+        .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 30px; width: 100%; }
+        .gallery-item { aspect-ratio: 1 / 1; cursor: pointer; border-radius: 12px; overflow: hidden; background-color: #eee; display: none; }
+        .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        .gallery-item:nth-child(-n+9) { display: block; } /* 처음 9개만 표시 */
+        .gallery-grid.expanded .gallery-item { display: block; } /* 펼쳤을 때 모두 표시 */
+        .more-btn { margin-top: 20px; padding: 10px 20px; background: #fff; border: 1px solid #eee; border-radius: 20px; font-family: 'Gowun Dodum', sans-serif; font-size: 0.85rem; color: #888; cursor: pointer; width: 80%; }
 
-        .gallery-item { 
-            aspect-ratio: 1 / 1; 
-            cursor: pointer; 
-            border-radius: 12px; 
-            overflow: hidden;
-            background-color: #eee;
-            display: none; 
-        }
-
-        .gallery-item img {
-            width: 100%;       /* 박스 가로폭에 맞춤 */
-            height: 100%;      /* 박스 세로폭에 맞춤 */
-            object-fit: cover; /* 이미지가 찌그러지지 않게 비율을 유지하며 박스를 채움 */
-            display: block;
-        }
-        /* 처음 9개 사진만 보이도록 설정 */
-        .gallery-item:nth-child(-n+9) {
-            display: block;
-        }
-
-        /* 펼쳐졌을 때 모든 사진 보이게 설정 */
-        .gallery-grid.expanded .gallery-item {
-            display: block;
-        }
-
-        /* 슬라이드 모달 안의 이미지도 둥글게 하고 싶다면 (선택사항) */
-        .slide img { 
-            width: 90%; 
-            max-height: 80vh; 
-            object-fit: contain; 
-            border-radius: 15px; /* 확대했을 때도 부드러운 느낌 유지 */
-        }
-
-        .more-btn {
-            margin-top: 20px; padding: 10px 20px; background: #fff; border: 1px solid #eee;
-            border-radius: 20px; font-family: 'Gowun Dodum', sans-serif; font-size: 0.85rem;
-            color: #888; cursor: pointer; width: 80%;
-        }
-
-        /* 슬라이드 모달 스타일 */
+        /* 슬라이드 모달 */
         #galleryModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 20000; justify-content: center; align-items: center; }
         .slider-container { width: 100%; max-width: 420px; position: relative; overflow: hidden; touch-action: pan-y; }
         .slider-wrapper { display: flex; transition: transform 0.3s ease-out; }
         .slide { min-width: 100%; display: flex; justify-content: center; align-items: center; }
-        .slide img { width: 90%; max-height: 80vh; object-fit: contain; border-radius: 5px; }
-
-        /* 좌우 버튼 */
-        .slide-btn {
-            position: absolute; top: 50%; transform: translateY(-50%);
-            background: rgba(255,255,255,0.2); color: #fff; border: none;
-            width: 40px; height: 40px; border-radius: 50%; font-size: 1.2rem; cursor: pointer;
-            z-index: 20001;
-        }
+        .slide img { width: 90%; max-height: 80vh; object-fit: contain; border-radius: 15px; }
+        .slide-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.2); color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; z-index: 20001; }
         .prev-btn { left: 10px; }
         .next-btn { right: 10px; }
         .close-slider { position: absolute; top: 20px; right: 20px; color: #fff; font-size: 2rem; cursor: pointer; z-index: 20002; }
 
-        /* --- 방명록 섹션 (추가) --- */
+        /* 6. 방명록 */
         .section-guestbook { padding: 60px 25px; text-align: center; background-color: #fcfcfc; }
         .gb-list { margin-top: 30px; text-align: left; }
         .gb-card { background: #fff; padding: 15px; border-radius: 12px; border: 1px solid #f0f0f0; margin-bottom: 12px; }
-        .gb-info { font-size: 0.85rem; color: #888; margin-bottom: 5px; border-bottom: 1px solid #f9f9f9; padding-bottom: 5px; }
+        .gb-info { display: flex; justify-content: space-between; align-items: center; font-size: 0.85rem; color: #888; margin-bottom: 5px; border-bottom: 1px solid #f9f9f9; padding-bottom: 5px; }
         .gb-text { font-size: 0.9rem; color: #444; line-height: 1.6; }
+        .gb-actions span { margin-left: 8px; font-size: 0.75rem; color: #bbb; cursor: pointer; }
+        .gb-actions span:hover { color: #f79e9e; }
         .gb-write-btn { margin-top: 20px; padding: 12px 30px; background: #333; color: #fff; border: none; border-radius: 8px; font-family: 'Gowun Dodum', sans-serif; cursor: pointer; width: 100%; }
 
-        /* 5. 마음 전하실 곳 */
+        /* 7. 마음 전하실 곳 */
         .account-section { padding: 60px 20px; text-align: center; }
         .account-box { background: #fff; border: 1px solid #eee; border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
         .account-header { padding: 15px 20px; display: flex; justify-content: space-between; font-size: 1rem; cursor: pointer; }
@@ -242,36 +167,19 @@
         .account-body.open { display: block; }
         .copy-btn { background: #eee; border: none; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem; cursor: pointer; float: right; }
 
-        /* 공통 모달 스타일 */
+        /* 공통 모달 및 팝업 스타일 */
         .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 10000; align-items: center; justify-content: center; }
         .modal-content { background: #fff; width: 85%; max-width: 350px; border-radius: 15px; padding: 25px; position: relative; }
         
-        /* 갤러리 확대 모달 */
         #galleryModal .modal-content { width: 95%; max-width: 420px; background: none; padding: 0; }
         #galleryModal img { width: 100%; border-radius: 8px; }
-
-        /* 방명록 작성 모달 */
+        
         #gbWriteModal .modal-content { text-align: left; }
         #gbWriteModal input, #gbWriteModal textarea { width: 100%; padding: 10px; border: 1px solid #ddd; border-radius: 6px; margin-bottom: 10px; font-family: 'Gowun Dodum', sans-serif; }
         
-        /* 방명록 액션 버튼 (수정/삭제) */
-        .gb-info { 
-            display: flex; 
-            justify-content: space-between; /* 양쪽 끝으로 정렬 */
-            align-items: center;
-            font-size: 0.85rem; 
-            color: #888; 
-            margin-bottom: 5px; 
-            border-bottom: 1px solid #f9f9f9; 
-            padding-bottom: 5px; 
-        }
-        .gb-actions span {
-            margin-left: 8px;
-            font-size: 0.75rem;
-            color: #bbb;
-            cursor: pointer;
-        }
-        .gb-actions span:hover { color: #f79e9e; }
+        .map-img-content { padding: 10px; line-height: 0; }
+        .map-img-content img { width: 100%; border-radius: 8px; }
+        .map-img-notice { font-size: 0.8rem; color: #999; margin-top: 10px; line-height: 1.5; text-align: center; }
 
         /* 비눗방울 애니메이션 */
         .bubble { position: absolute; bottom: -50px; background: radial-gradient(circle at 30% 30%, rgba(255, 255, 255, 0.9) 0%, rgba(255, 255, 255, 0.4) 15%, hsla(var(--bubble-hue), 80%, 70%, 0.25) 40%, rgba(255, 255, 255, 0) 100%); border: 1px solid rgba(255, 255, 255, 0.3); border-radius: 50%; pointer-events: none; z-index: 10; opacity: 0; }
@@ -284,10 +192,10 @@
         <div class="main-cover fade-in">
             <div class="names">박준영 ♥ 김민희</div>
             <div class="main-img-box">
-                <img src="images/main_photo.jpg" alt="메인 사진" onerror="this.src='https://via.placeholder.com/400x530/e0e0e0/ffffff?text=Main+Photo'">
+                <img src="static/images/main_photo.jpg" alt="메인 사진">
             </div>
             <div class="date-text">2026.05.24 일요일 오후 2:00</div>
-            <div class="date-text" style="font-size: 0.9rem; margin-top:5px; opacity:0.6;">SY컨벤션웨딩홀(보보스프라자)</div>
+            <div class="date-text venue-text">SY컨벤션웨딩홀(보보스프라자)</div>
         </div>
 
         <div class="divider"></div>
@@ -324,12 +232,9 @@
                 <div class="sun">31</div>
             </div>
             <div class="countdown-wrapper">
-                <div class="count-item"><span class="label">DAYS</span><span class="num" id="d-day">00</span></div>
-                <span class="colon">:</span>
-                <div class="count-item"><span class="label">HOUR</span><span class="num" id="d-hour">00</span></div>
-                <span class="colon">:</span>
-                <div class="count-item"><span class="label">MIN</span><span class="num" id="d-min">00</span></div>
-                <span class="colon">:</span>
+                <div class="count-item"><span class="label">DAYS</span><span class="num" id="d-day">00</span></div><span class="colon">:</span>
+                <div class="count-item"><span class="label">HOUR</span><span class="num" id="d-hour">00</span></div><span class="colon">:</span>
+                <div class="count-item"><span class="label">MIN</span><span class="num" id="d-min">00</span></div><span class="colon">:</span>
                 <div class="count-item"><span class="label">SEC</span><span class="num" id="d-sec">00</span></div>
             </div>
             <div class="dday-message" id="dday-message">준영, 민희의 결혼식이 00일 남았습니다.</div>
@@ -348,22 +253,22 @@
             <div class="map-area">
                 <div id="daumRoughmapContainer1775996465440" class="root_daum_roughmap root_daum_roughmap_landing"></div>
             </div>
-            <a href="javascript:void(0);" class="sketch-btn" onclick="openMapModal()">약도 이미지 보기</a>
+            <a href="javascript:void(0);" class="sketch-btn" onclick="openModal('mapImgModal')">
+                <img src="static/images/yakdo.png" alt="아이콘">
+                <span>약도 이미지 보기</span>
+            </a>
             <div class="navi-section">
                 <div class="navi-buttons">
-                <a href="https://naver.me/G4Wo7ISk" target="_blank" class="navi-item">
-                    <img src="static/images/naver_map.webp" alt="네이버지도">
-                    <span>네이버지도</span>
-                </a>
-                <a href="https://tmap.life/3ce613f6" target="_blank" class="navi-item">
-                    <img src="static/images/tmap.png" alt="티맵">
-                    <span>티맵</span>
-                </a>
-                <a href="https://kko.to/caOny0ZDav" target="_blank" class="navi-item">
-                    <img src="static/images/kakaomap.png" alt="카카오내비">
-                    <span>카카오내비</span>
-                </a>
-            </div>
+                    <a href="https://naver.me/G4Wo7ISk" target="_blank" class="navi-item">
+                        <img src="static/images/naver_map.webp" alt="네이버지도"><span>네이버지도</span>
+                    </a>
+                    <a href="https://tmap.life/3ce613f6" target="_blank" class="navi-item">
+                        <img src="static/images/tmap.png" alt="티맵"><span>티맵</span>
+                    </a>
+                    <a href="https://kko.to/caOny0ZDav" target="_blank" class="navi-item">
+                        <img src="static/images/kakaomap.png" alt="카카오내비"><span>카카오내비</span>
+                    </a>
+                </div>
             </div>
             <div class="transport-section">
                 <div class="transport-item">
@@ -393,26 +298,16 @@
                 <div class="gallery-item" onclick="openSlider(7)"><img src="static/images/gallery8.jpg" loading="lazy"></div>
                 <div class="gallery-item" onclick="openSlider(8)"><img src="static/images/gallery9.jpg" loading="lazy"></div>
                 <div class="gallery-item" onclick="openSlider(9)"><img src="static/images/gallery10.jpg" loading="lazy"></div>
-                <div class="gallery-item" onclick="openSlider(9)"><img src="static/images/gallery11.jpg" loading="lazy"></div>
-                <div class="gallery-item" onclick="openSlider(9)"><img src="static/images/gallery12.jpg" loading="lazy"></div>
-                <div class="gallery-item" onclick="openSlider(9)"><img src="static/images/gallery13.jpg" loading="lazy"></div>
-                <div class="gallery-item" onclick="openSlider(9)"><img src="static/images/gallery14.jpg" loading="lazy"></div>
-                <div class="gallery-item" onclick="openSlider(9)"><img src="static/images/gallery15.jpg" loading="lazy"></div>
-                <div class="gallery-item" onclick="openSlider(9)"><img src="static/images/gallery16.jpg" loading="lazy"></div>
-                <div class="gallery-item" onclick="openSlider(9)"><img src="static/images/gallery17.jpg" loading="lazy"></div>
-                <div class="gallery-item" onclick="openSlider(9)"><img src="static/images/gallery18.jpg" loading="lazy"></div>
-                </div>
-            <button class="more-btn" id="moreBtn" onclick="toggleGallery()">사진 더보기</button>
-        </div>
-
-        <div id="galleryModal">
-            <span class="close-slider" onclick="closeSlider()">&times;</span>
-            <button class="slide-btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
-            <div class="slider-container">
-                <div class="slider-wrapper" id="sliderWrapper">
-                    </div>
+                <div class="gallery-item" onclick="openSlider(10)"><img src="static/images/gallery11.jpg" loading="lazy"></div>
+                <div class="gallery-item" onclick="openSlider(11)"><img src="static/images/gallery12.jpg" loading="lazy"></div>
+                <div class="gallery-item" onclick="openSlider(12)"><img src="static/images/gallery13.jpg" loading="lazy"></div>
+                <div class="gallery-item" onclick="openSlider(13)"><img src="static/images/gallery14.jpg" loading="lazy"></div>
+                <div class="gallery-item" onclick="openSlider(14)"><img src="static/images/gallery15.jpg" loading="lazy"></div>
+                <div class="gallery-item" onclick="openSlider(15)"><img src="static/images/gallery16.jpg" loading="lazy"></div>
+                <div class="gallery-item" onclick="openSlider(16)"><img src="static/images/gallery17.jpg" loading="lazy"></div>
+                <div class="gallery-item" onclick="openSlider(17)"><img src="static/images/gallery18.jpg" loading="lazy"></div>
             </div>
-            <button class="slide-btn next-btn" onclick="moveSlide(1)">&#10095;</button>
+            <button class="more-btn" id="moreBtn" onclick="toggleGallery()">사진 더보기</button>
         </div>
 
         <div class="divider"></div>
@@ -421,9 +316,7 @@
             <div class="eng-title">GUESTBOOK</div>
             <div class="ko-title">방명록</div>
             <div class="gb-list">
-                <div class="gb-card"><div class="gb-info">친구 이OO | 2026.04.12</div><div class="gb-text">두 사람의 앞날을 진심으로 축복합니다! 행복하게 잘 사세요!</div></div>
-                <div class="gb-card"><div class="gb-info">동료 김OO | 2026.04.12</div><div class="gb-text">너무 예쁜 커플이에요. 결혼 진심으로 축하드려요~</div></div>
-            </div>
+                </div>
             <button class="gb-write-btn" onclick="openModal('gbWriteModal')">축하 메시지 남기기</button>
         </div>
 
@@ -468,8 +361,13 @@
         </div>
     </div>
 
-    <div id="galleryModal" class="modal-overlay" onclick="closeModal(event, 'galleryModal')">
-        <div class="modal-content"><img id="galleryFullImg" src="" alt="확대"></div>
+    <div id="galleryModal">
+        <span class="close-slider" onclick="closeSlider()">&times;</span>
+        <button class="slide-btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
+        <div class="slider-container">
+            <div class="slider-wrapper" id="sliderWrapper"></div>
+        </div>
+        <button class="slide-btn next-btn" onclick="moveSlide(1)">&#10095;</button>
     </div>
 
     <div id="gbWriteModal" class="modal-overlay" onclick="closeModal(event, 'gbWriteModal')">
@@ -482,10 +380,10 @@
         </div>
     </div>
 
-    <div id="mapImgModal" class="modal-overlay" onclick="closeMapModal(event)">
-        <div class="modal-content" style="padding: 10px; line-height: 0;">
-            <img src="static/images/map.png" style="width:100%; border-radius:8px;" alt="약도">
-            <p style="font-size: 0.8rem; color: #999; margin-top: 10px; line-height: 1.5; text-align: center;">창 바깥을 누르면 닫힙니다.</p>
+    <div id="mapImgModal" class="modal-overlay" onclick="closeModal(event, 'mapImgModal')">
+        <div class="modal-content map-img-content">
+            <img src="static/images/map.png" alt="약도">
+            <p class="map-img-notice">창 바깥을 누르면 닫힙니다.</p>
         </div>
     </div>
 
@@ -494,12 +392,10 @@
         const obs = new IntersectionObserver((es) => { es.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); }); }, { threshold: 0.1 }); 
         document.querySelectorAll('.fade-in').forEach(el => obs.observe(el));
 
+        // 공용 모달 열기/닫기 함수
         function openModal(id) { document.getElementById(id).style.display = 'flex'; }
-        function openGalleryModal(src) { 
-            document.getElementById('galleryFullImg').src = src;
-            document.getElementById('galleryModal').style.display = 'flex'; 
-        }
         function closeModal(e, id) { if (e.target.classList.contains('modal-overlay')) document.getElementById(id).style.display = 'none'; }
+        
         function toggleAccount(id) { document.getElementById(id).classList.toggle('open'); }
         function copyText(id) { navigator.clipboard.writeText(document.getElementById(id).innerText).then(() => alert("복사되었습니다.")); }
 
@@ -517,46 +413,45 @@
         const target = new Date("2026-05-24T14:00:00").getTime();
         function update() {
             const gap = target - new Date().getTime();
-            const d = Math.floor(gap / (1000*60*60*24));
-            const h = Math.floor((gap%(1000*60*60*24))/(1000*60*60));
-            const m = Math.floor((gap%(1000*60*60))/(1000*60));
-            const s = Math.floor((gap%(1000*60))/1000);
             if(gap > 0) {
+                const d = Math.floor(gap / (1000*60*60*24));
+                const h = Math.floor((gap%(1000*60*60*24))/(1000*60*60));
+                const m = Math.floor((gap%(1000*60*60))/(1000*60));
+                const s = Math.floor((gap%(1000*60))/1000);
                 document.getElementById("d-day").innerText = String(d).padStart(2,'0');
                 document.getElementById("d-hour").innerText = String(h).padStart(2,'0');
                 document.getElementById("d-min").innerText = String(m).padStart(2,'0');
                 document.getElementById("d-sec").innerText = String(s).padStart(2,'0');
                 document.getElementById("dday-message").innerText = `준영, 민희의 결혼식이 ${d}일 남았습니다.`;
-            } else { document.getElementById("dday-message").innerHTML = "오늘은 <b>결혼식 당일</b>입니다! ❤️"; }
+            } else { 
+                document.getElementById("d-day").innerText = "00";
+                document.getElementById("dday-message").innerHTML = "오늘은 <b>결혼식 당일</b>입니다! ❤️"; 
+            }
         }
         setInterval(update, 1000); update();
 
         new daum.roughmap.Lander({ "timestamp" : "1775996465440", "key" : "2a5xmzdf3wwm", "mapWidth" : "420", "mapHeight" : "300" }).render();
+        
+        // 갤러리 로직
         let currentIdx = 0;
         const sliderWrapper = document.getElementById('sliderWrapper');
         const galleryImgs = document.querySelectorAll('.gallery-grid img');
         
-        // 갤러리 펼치기/접기
         function toggleGallery() {
             const grid = document.getElementById('galleryGrid');
             const btn = document.getElementById('moreBtn');
-            
-            // 클래스만 토글하면 CSS의 nth-child와 display 설정에 의해 자연스럽게 나타납니다.
             grid.classList.toggle('expanded');
-            
             if (grid.classList.contains('expanded')) {
                 btn.innerText = '사진 접기';
             } else {
                 btn.innerText = '사진 더보기';
-                // 접었을 때 화면이 갤러리 상단으로 부드럽게 이동하게 하고 싶다면 추가
                 document.querySelector('.section-gallery').scrollIntoView({ behavior: 'smooth' });
             }
         }
 
-        // 슬라이더 열기
         function openSlider(idx) {
             currentIdx = idx;
-            sliderWrapper.innerHTML = ''; // 초기화
+            sliderWrapper.innerHTML = '';
             galleryImgs.forEach(img => {
                 const div = document.createElement('div');
                 div.classList.add('slide');
@@ -570,33 +465,27 @@
         }
 
         function closeSlider() { document.getElementById('galleryModal').style.display = 'none'; }
-
         function moveSlide(n) {
             currentIdx += n;
             if (currentIdx >= galleryImgs.length) currentIdx = 0;
             if (currentIdx < 0) currentIdx = galleryImgs.length - 1;
             updateSlider();
         }
+        function updateSlider() { sliderWrapper.style.transform = `translateX(-${currentIdx * 100}%)`; }
 
-        function updateSlider() {
-            sliderWrapper.style.transform = `translateX(-${currentIdx * 100}%)`;
-        }
-
-        // 드래그(스와이프) 기능 추가
         let startX = 0;
         document.getElementById('galleryModal').addEventListener('touchstart', e => startX = e.touches[0].clientX);
         document.getElementById('galleryModal').addEventListener('touchend', e => {
             let endX = e.changedTouches[0].clientX;
-            if (startX - endX > 50) moveSlide(1);  // 왼쪽으로 밀면 다음
-            if (endX - startX > 50) moveSlide(-1); // 오른쪽으로 밀면 이전
+            if (startX - endX > 50) moveSlide(1);  
+            if (endX - startX > 50) moveSlide(-1); 
         });
     </script>
+
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        // ★ doc, deleteDoc, updateDoc 기능이 추가로 불러와집니다.
         import { getFirestore, collection, addDoc, getDocs, query, orderBy, doc, deleteDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-        // ★ 본인의 파이어베이스 설정값 붙여넣기 ★
         const firebaseConfig = {
             apiKey: "AIzaSyAic59kf6D0iQ7YaDt8von7hhrv7TeiGk0",
             authDomain: "wedding-card-1c206.firebaseapp.com",
@@ -609,10 +498,8 @@
         const app = initializeApp(firebaseConfig);
         const db = getFirestore(app);
 
-        // 방명록 데이터를 임시 저장할 공간 (수정/삭제 시 비밀번호 대조용)
         window.gbData = {}; 
 
-        // 1. 방명록 등록 함수
         window.submitGuestbook = async function() {
             const nameInput = document.querySelector('#gbName').value;
             const pwInput = document.querySelector('#gbPw').value;
@@ -629,7 +516,7 @@
 
                 await addDoc(collection(db, "guestbook"), {
                     name: nameInput,
-                    password: pwInput, // ★ 비밀번호 DB에 함께 저장
+                    password: pwInput,
                     message: messageInput,
                     timestamp: new Date()
                 });
@@ -639,45 +526,49 @@
             } catch (e) { 
                 console.error("에러 발생: ", e); 
                 alert("등록에 실패했습니다.");
+                const btn = document.querySelector('.gb-write-btn');
+                btn.innerText = "메시지 등록"; btn.disabled = false;
             }
         };
 
-        // 2. 방명록 불러오기 함수
         async function loadGuestbook() {
             const gbList = document.querySelector('.gb-list');
             gbList.innerHTML = ''; 
             
-            const q = query(collection(db, "guestbook"), orderBy("timestamp", "desc"));
-            const querySnapshot = await getDocs(q);
-            
-            querySnapshot.forEach((docSnap) => {
-                const data = docSnap.data();
-                const id = docSnap.id;
-                window.gbData[id] = data; // 데이터 보관
+            try {
+                const q = query(collection(db, "guestbook"), orderBy("timestamp", "desc"));
+                const querySnapshot = await getDocs(q);
                 
-                const dateStr = data.timestamp.toDate().toLocaleDateString();
-                
-                gbList.innerHTML += `
-                    <div class="gb-card">
-                        <div class="gb-info">
-                            <span>${data.name} | ${dateStr}</span>
-                            <span class="gb-actions">
-                                <span onclick="editGuestbook('${id}')">수정</span>
-                                <span onclick="deleteGuestbook('${id}')">삭제</span>
-                            </span>
+                querySnapshot.forEach((docSnap) => {
+                    const data = docSnap.data();
+                    const id = docSnap.id;
+                    window.gbData[id] = data; 
+                    
+                    const dateStr = data.timestamp.toDate().toLocaleDateString();
+                    
+                    gbList.innerHTML += `
+                        <div class="gb-card">
+                            <div class="gb-info">
+                                <span>${data.name} | ${dateStr}</span>
+                                <span class="gb-actions">
+                                    <span onclick="editGuestbook('${id}')">수정</span>
+                                    <span onclick="deleteGuestbook('${id}')">삭제</span>
+                                </span>
+                            </div>
+                            <div class="gb-text">${data.message}</div>
                         </div>
-                        <div class="gb-text">${data.message}</div>
-                    </div>
-                `;
-            });
+                    `;
+                });
+            } catch (e) {
+                console.error("방명록 로드 실패: ", e);
+            }
         }
 
-        // 3. 방명록 수정 함수
         window.editGuestbook = async function(id) {
             const targetData = window.gbData[id];
             const inputPw = prompt("등록 시 입력한 비밀번호 4자리를 입력해주세요.");
             
-            if (inputPw === null) return; // 취소 누름
+            if (inputPw === null) return; 
             if (inputPw !== targetData.password) {
                 alert("비밀번호가 일치하지 않습니다.");
                 return;
@@ -691,7 +582,6 @@
             }
         };
 
-        // 4. 방명록 삭제 함수
         window.deleteGuestbook = async function(id) {
             const targetData = window.gbData[id];
             const inputPw = prompt("등록 시 입력한 비밀번호 4자리를 입력해주세요.");
@@ -709,20 +599,7 @@
             }
         };
 
-        // 페이지 로드 시 방명록 불러오기 실행
         loadGuestbook();
-
-        // 약도 이미지 모달 열기
-        function openMapModal() {
-            document.getElementById('mapImgModal').style.display = 'flex';
-        }
-
-        // 약도 이미지 모달 닫기 (배경 클릭 시)
-        function closeMapModal(e) {
-            if (e.target.classList.contains('modal-overlay')) {
-                document.getElementById('mapImgModal').style.display = 'none';
-            }
-        }
     </script>
 </body>
 </html>
