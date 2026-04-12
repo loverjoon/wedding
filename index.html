@@ -284,7 +284,7 @@
         <div class="main-cover fade-in">
             <div class="names">박준영 ♥ 김민희</div>
             <div class="main-img-box">
-                <img src="static/images/main_photo.jpg" alt="메인 사진">
+                <img src="images/main_photo.jpg" alt="메인 사진" onerror="this.src='https://via.placeholder.com/400x530/e0e0e0/ffffff?text=Main+Photo'">
             </div>
             <div class="date-text">2026.05.24 일요일 오후 2:00</div>
             <div class="date-text" style="font-size: 0.9rem; margin-top:5px; opacity:0.6;">SY컨벤션웨딩홀(보보스프라자)</div>
@@ -482,8 +482,11 @@
         </div>
     </div>
 
-    <div id="mapImgModal" class="modal-overlay" onclick="closeModal(event, 'mapImgModal')">
-        <div class="modal-content"><img src="static/images/map.png" style="width:100%; border-radius:8px;"></div>
+    <div id="mapImgModal" class="modal-overlay" onclick="closeMapModal(event)">
+        <div class="modal-content" style="padding: 10px; line-height: 0;">
+            <img src="static/images/map.png" style="width:100%; border-radius:8px;" alt="약도">
+            <p style="font-size: 0.8rem; color: #999; margin-top: 10px; line-height: 1.5; text-align: center;">창 바깥을 누르면 닫힙니다.</p>
+        </div>
     </div>
 
     <script src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
@@ -708,6 +711,18 @@
 
         // 페이지 로드 시 방명록 불러오기 실행
         loadGuestbook();
+
+        // 약도 이미지 모달 열기
+        function openMapModal() {
+            document.getElementById('mapImgModal').style.display = 'flex';
+        }
+
+        // 약도 이미지 모달 닫기 (배경 클릭 시)
+        function closeMapModal(e) {
+            if (e.target.classList.contains('modal-overlay')) {
+                document.getElementById('mapImgModal').style.display = 'none';
+            }
+        }
     </script>
 </body>
 </html>
