@@ -348,10 +348,7 @@
             <div class="map-area">
                 <div id="daumRoughmapContainer1775996465440" class="root_daum_roughmap root_daum_roughmap_landing"></div>
             </div>
-            <a href="javascript:void(0);" class="sketch-btn" onclick="openModal('mapImgModal')">
-                <img src="static/images/yakdo.png" alt="약도 아이콘" style="width:18px; height:18px; vertical-align:middle; margin-right:6px;">
-                약도 이미지 보기
-            </a>
+            <a href="javascript:void(0);" class="sketch-btn" onclick="openMapModal()">약도 이미지 보기</a>
             <div class="navi-section">
                 <div class="navi-buttons">
                 <a href="https://naver.me/G4Wo7ISk" target="_blank" class="navi-item">
@@ -486,7 +483,7 @@
     </div>
 
     <div id="mapImgModal" class="modal-overlay" onclick="closeModal(event, 'mapImgModal')">
-        <div class="modal-content"><img src="{{ url_for('static', filename='images/map.png" style="width:100%; border-radius:8px;"></div>
+        <div class="modal-content"><img src="static/images/map.png" style="width:100%; border-radius:8px;"></div>
     </div>
 
     <script src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
