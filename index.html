@@ -127,7 +127,27 @@
         .sketch-btn { display: inline-flex; align-items: center; justify-content: center; width: 85%; padding: 15px 0; background: #fff; border: 1px solid #eee; border-radius: 12px; color: #555; font-size: 0.95rem; text-decoration: none; margin-top: 20px; margin-bottom: 40px; gap: 8px; }
         .navi-section { text-align: left; padding: 0 25px; }
         .navi-buttons { display: flex; gap: 10px; margin-bottom: 40px; }
-        .navi-item { flex: 1; display: flex; align-items: center; justify-content: center; gap: 5px; padding: 12px 0; background: #fff; border: 1px solid #eee; border-radius: 8px; font-size: 0.85rem; color: #333; text-decoration: none; }
+        .navi-item { 
+            flex: 1; 
+            display: flex; 
+            flex-direction: column; /* 아이콘과 글자를 세로로 배치 */
+            align-items: center; 
+            justify-content: center; 
+            gap: 8px; 
+            padding: 15px 0; 
+            background: #fff; 
+            border: 1px solid #eee; 
+            border-radius: 12px; 
+            font-size: 0.8rem; 
+            color: #555; 
+            text-decoration: none;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+        .navi-item img {
+            width: 32px; /* 아이콘 크기 */
+            height: 32px;
+            object-fit: contain;
+        }
         .transport-section { padding: 0 25px 60px; text-align: left; }
         .transport-item { margin-bottom: 35px; }
         .t-title { font-size: 1rem; font-weight: bold; color: #333; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
@@ -264,7 +284,7 @@
         <div class="main-cover fade-in">
             <div class="names">박준영 ♥ 김민희</div>
             <div class="main-img-box">
-                <img src="static/images/main_photo.jpg" alt="메인 사진" onerror="this.src='https://via.placeholder.com/400x530/e0e0e0/ffffff?text=Main+Photo'">
+                <img src="images/main_photo.jpg" alt="메인 사진" onerror="this.src='https://via.placeholder.com/400x530/e0e0e0/ffffff?text=Main+Photo'">
             </div>
             <div class="date-text">2026.05.24 일요일 오후 2:00</div>
             <div class="date-text" style="font-size: 0.9rem; margin-top:5px; opacity:0.6;">SY컨벤션웨딩홀(보보스프라자)</div>
@@ -329,15 +349,24 @@
                 <div id="daumRoughmapContainer1775996465440" class="root_daum_roughmap root_daum_roughmap_landing"></div>
             </div>
             <a href="javascript:void(0);" class="sketch-btn" onclick="openModal('mapImgModal')">
-                <img src="https://cdn-icons-png.flaticon.com/512/854/854878.png" alt="약도 아이콘" style="width:18px; height:18px; vertical-align:middle; margin-right:6px;">
+                <img src="static/images/yakdo.png" alt="약도 아이콘" style="width:18px; height:18px; vertical-align:middle; margin-right:6px;">
                 약도 이미지 보기
             </a>
             <div class="navi-section">
                 <div class="navi-buttons">
-                    <a href="https://map.naver.com/" target="_blank" class="navi-item">🟢 네이버지도</a>
-                    <a href="https://tmap.co.kr/" target="_blank" class="navi-item">🔵 티맵</a>
-                    <a href="https://map.kakao.com/" target="_blank" class="navi-item">💛 카카오내비</a>
-                </div>
+                <a href="https://naver.me/G4Wo7ISk" target="_blank" class="navi-item">
+                    <img src="static/images/naver_map.webp" alt="네이버지도">
+                    <span>네이버지도</span>
+                </a>
+                <a href="https://tmap.life/3ce613f6" target="_blank" class="navi-item">
+                    <img src="static/images/tmap.png" alt="티맵">
+                    <span>티맵</span>
+                </a>
+                <a href="https://upload.wikimedia.org/wikipedia/commons/c/c3/Naver_Map_Logo.png" target="_blank" class="navi-item">
+                    <img src="static/images/kakaomap.png" alt="카카오내비">
+                    <span>카카오내비</span>
+                </a>
+            </div>
             </div>
             <div class="transport-section">
                 <div class="transport-item">
