@@ -177,8 +177,85 @@
         .copy-btn { background: #eee; border: none; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem; cursor: pointer; float: right; }
 
         /* 공통 모달 스타일 */
-        .modal-overlay { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.8); z-index: 10000; align-items: center; justify-content: center; }
-        .modal-content { background: #fff; width: 85%; max-width: 350px; border-radius: 15px; padding: 25px; position: relative; }
+        /* 연락처 모달 스타일 수정 */
+        #contactModal .modal-content {
+            padding: 20px;
+            width: 90%;
+            max-width: 380px;
+            background: #fafafa; /* 사진과 비슷한 밝은 배경 */
+        }
+        
+        .contact-group {
+            margin-bottom: 25px;
+        }
+        
+        .contact-group:last-child {
+            margin-bottom: 0;
+        }
+
+        .group-title {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #333;
+            margin-bottom: 15px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #eaeaea; /* 구분선 추가 */
+        }
+        
+        /* 신부측 타이틀 색상 (선택사항, 기존 코드 유지) */
+        .contact-group:nth-child(2) .group-title {
+            color: #f79e9e; 
+        }
+
+        .contact-item {
+            display: flex;
+            justify-content: space-between; /* 양쪽 끝으로 배치 */
+            align-items: center; /* 세로 중앙 정렬 */
+            padding: 12px 0; /* 위아래 여백 */
+        }
+
+        .contact-item span {
+            font-size: 0.95rem;
+            color: #555;
+            display: flex;
+            align-items: center;
+            gap: 15px; /* '신랑'과 '이름' 사이 간격 */
+        }
+
+        .contact-item span b {
+            color: #222; /* 이름은 조금 더 진하게 */
+            font-weight: 500;
+        }
+
+        /* 호칭 부분 ('신랑', '아버지' 등) 을 회색으로 처리 */
+        .contact-item span::first-line {
+             color: #888;
+             font-size: 0.9rem;
+        }
+
+        .contact-item .icons {
+            display: flex;
+            gap: 8px; /* 전화, 문자 아이콘 사이 간격 */
+        }
+
+        .contact-item .icons a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 38px;
+            height: 38px;
+            border: 1px solid #ddd;
+            border-radius: 50%; /* 동그란 버튼 모양 */
+            background-color: #fff;
+            text-decoration: none;
+            font-size: 1.1rem; /* 이모지 크기 */
+            color: #666;
+            transition: background-color 0.2s;
+        }
+
+        .contact-item .icons a:hover {
+            background-color: #f0f0f0;
+        }
         
         /* 방명록 작성 모달 */
         #gbWriteModal .modal-content { text-align: left; }
@@ -198,7 +275,7 @@
                 <img src="static/images/main_photo.jpg" alt="메인 사진">
             </div>
             <div class="date-text">2026.05.24 일요일 오후 2:00</div>
-            <div class="date-text" style="font-size: 0.9rem; margin-top:5px; opacity:0.6;">SY컨벤션웨딩홀(보보스프라자)</div>
+            <div class="date-text" style="font-size: 1rem; margin-top:5px; opacity:0.6;">SY컨벤션웨딩홀(보보스프라자)</div>
         </div>
 
         <div class="divider"></div>
@@ -293,7 +370,7 @@
                 </div>
                 <div class="transport-item">
                     <div class="t-title">🚗 자가용 이용시</div>
-                    <div class="t-content"><b>"SY컨벤션웨딩홀"</b> 또는 <b>"보보스프라자"</b> 입력<br><br><b>무료주차 2시간</b> (제1,2,3주차장 이용)</div>
+                    <div class="t-content"><b>"SY컨벤션웨딩홀"</b> 또는 <b>"보보스프라자"</b> 입력<br><b>무료주차 2시간</b> (제1,2,3주차장 이용)</div>
                 </div>                
             </div>
         </div>
@@ -386,15 +463,21 @@
         <div class="modal-content">
             <div class="contact-group">
                 <div class="group-title">신랑측</div>
-                <div class="contact-item"><span>신랑 <b>박준영</b></span><div class="icons"><a href="tel:01079319067">📞</a> <a href="sms:01079319067">✉️</a></div></div>
-                <div class="contact-item"><span>아버지 <b>박상진</b></span><div class="icons"><a href="tel:01025145207">📞</a> <a href="sms:01025145207">✉️</a></div></div>
-                <div class="contact-item"><span>어머니 <b>남외분</b></span><div class="icons"><a href="tel:01096024589">📞</a> <a href="sms:01096024589">✉️</a></div></div>
+                <span><em style="font-style:normal; color:#888; width:45px; display:inline-block;">신랑</em> <b>박준영</b></span>
+                    <div class="icons"><a href="tel:01079319067">📞</a> <a href="sms:01079319067">✉️</a></div>
+                <span><em style="font-style:normal; color:#888; width:45px; display:inline-block;">아버지</em> <b>박상진</b></span>
+                    <div class="icons"><a href="tel:01025145207">📞</a> <a href="sms:01025145207">✉️</a></div>
+                <span><em style="font-style:normal; color:#888; width:45px; display:inline-block;">어머니</em> <b>남외분</b></span>
+                    <div class="icons"><a href="tel:01096024589">📞</a> <a href="sms:01096024589">✉️</a></div>
             </div>
             <div class="contact-group">
                 <div class="group-title" style="color: #f79e9e;">신부측</div>
-                <div class="contact-item"><span>신부 <b>김민희</b></span><div class="icons"><a href="tel:01055611935">📞</a> <a href="sms:01055611935">✉️</a></div></div>
-                <div class="contact-item"><span>아버지 <b>김재용</b></span><div class="icons"><a href="tel:01035281936">📞</a> <a href="sms:01035281936">✉️</a></div></div>
-                <div class="contact-item"><span>어머니 <b>조정수</b></span><div class="icons"><a href="tel:01048011935">📞</a> <a href="sms:01048011935">✉️</a></div></div>
+                <span><em style="font-style:normal; color:#888; width:45px; display:inline-block;">신부</em> <b>김민희</b></span>
+                    <div class="icons"><a href="tel:01055611935">📞</a> <a href="sms:01055611935">✉️</a></div>
+                <span><em style="font-style:normal; color:#888; width:45px; display:inline-block;">아버지</em> <b>김재용</b></span>
+                    <div class="icons"><a href="tel:01035281936">📞</a> <a href="sms:01035281936">✉️</a></div>
+                <span><em style="font-style:normal; color:#888; width:45px; display:inline-block;">어머니</em> <b>조정수</b></span>
+                    <div class="icons"><a href="tel:01048011935">📞</a> <a href="sms:01048011935">✉️</a></div>
             </div>
         </div>
     </div>
