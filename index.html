@@ -63,34 +63,12 @@
 
         .divider { width: 1px; height: 30px; background-color: #eee; margin: 40px auto; }
 
-        /* 모든 섹션의 영문 제목 색상 통일 */
-        .location .eng-title,
-        .section-gallery .eng-title,
-        .section-guestbook .eng-title,
-        .account-section .eng-title,
-        .greeting .eng-title,
-        .main-cover .title-eng {
-            font-family: 'Crimson Pro', serif;
-            font-size: 1.1rem;
-            color: #ffb6b6 !important; 
-            letter-spacing: 3px;
-            margin-bottom: 8px;
-            font-weight: 400;
-            text-align: center;
-            display: block;
+        /* 영문/국문 제목 색상 통일 */
+        .location .eng-title, .section-gallery .eng-title, .section-guestbook .eng-title, .account-section .eng-title, .greeting .eng-title, .main-cover .title-eng {
+            font-family: 'Crimson Pro', serif; font-size: 1.1rem; color: #ffb6b6 !important; letter-spacing: 3px; margin-bottom: 8px; font-weight: 400; text-align: center; display: block;
         }
-
-        /* 국문 제목 색상 통일 */
-        .location .ko-title,
-        .section-gallery .ko-title,
-        .section-guestbook .ko-title,
-        .account-section .ko-title,
-        .greeting .ko-title {
-            font-size: 1.3rem;
-            color: #f79e9e; 
-            margin-bottom: 25px;
-            text-align: center;
-            font-weight: 500;
+        .location .ko-title, .section-gallery .ko-title, .section-guestbook .ko-title, .account-section .ko-title, .greeting .ko-title {
+            font-size: 1.3rem; color: #f79e9e; margin-bottom: 25px; text-align: center; font-weight: 500;
         }       
 
         /* 2. 초대말 */
@@ -149,8 +127,6 @@
         .slider-wrapper { display: flex; transition: transform 0.3s ease-out; }
         .slide { min-width: 100%; display: flex; justify-content: center; align-items: center; }
         .slide img { width: 90%; max-height: 80vh; object-fit: contain; border-radius: 15px; }
-
-        /* 좌우 버튼 */
         .slide-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.2); color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; z-index: 20001; }
         .prev-btn { left: 10px; }
         .next-btn { right: 10px; }
@@ -166,7 +142,7 @@
         .gb-text { font-size: 0.9rem; color: #444; line-height: 1.6; }
         .gb-write-btn { margin-top: 20px; padding: 12px 30px; background: #333; color: #fff; border: none; border-radius: 8px; font-family: 'Gowun Dodum', sans-serif; cursor: pointer; width: 100%; }
 
-        /* 7. 마음 전하실 곳 (수정됨) */
+        /* 7. 마음 전하실 곳 */
         .account-section { padding: 60px 20px; text-align: center; }
         .account-box { background: #fff; border: 1px solid #eee; border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
         .account-header { padding: 15px 20px; display: flex; justify-content: space-between; font-size: 1rem; cursor: pointer; }
@@ -176,86 +152,35 @@
         .account-item:last-child { border-bottom: none; }
         .copy-btn { background: #eee; border: none; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem; cursor: pointer; float: right; }
 
-        /* 공통 모달 스타일 */
-        /* 연락처 모달 스타일 수정 */
+        /* ======================================================== */
+        /* 공통 팝업(모달) 스타일 - 이 부분이 지워져서 화면이 깨졌습니다! */
+        /* ======================================================== */
+        .modal-overlay { 
+            display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
+            background: rgba(0, 0, 0, 0.8); z-index: 10000; align-items: center; justify-content: center; 
+        }
+        .modal-content { 
+            background: #fff; width: 85%; max-width: 350px; border-radius: 15px; padding: 25px; position: relative; 
+        }
+
+        /* 연락처 모달 전용 스타일 (새로 수정된 예쁜 정렬) */
         #contactModal .modal-content {
             padding: 20px;
             width: 90%;
             max-width: 380px;
-            background: #fafafa; /* 사진과 비슷한 밝은 배경 */
+            background: #fafafa;
         }
-        
-        .contact-group {
-            margin-bottom: 25px;
-        }
-        
-        .contact-group:last-child {
-            margin-bottom: 0;
-        }
-
-        .group-title {
-            font-size: 1rem;
-            font-weight: 600;
-            color: #333;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #eaeaea; /* 구분선 추가 */
-        }
-        
-        /* 신부측 타이틀 색상 (선택사항, 기존 코드 유지) */
-        .contact-group:nth-child(2) .group-title {
-            color: #f79e9e; 
-        }
-
-        .contact-item {
-            display: flex;
-            justify-content: space-between; /* 양쪽 끝으로 배치 */
-            align-items: center; /* 세로 중앙 정렬 */
-            padding: 12px 0; /* 위아래 여백 */
-        }
-
-        .contact-item span {
-            font-size: 0.95rem;
-            color: #555;
-            display: flex;
-            align-items: center;
-            gap: 15px; /* '신랑'과 '이름' 사이 간격 */
-        }
-
-        .contact-item span b {
-            color: #222; /* 이름은 조금 더 진하게 */
-            font-weight: 500;
-        }
-
-        /* 호칭 부분 ('신랑', '아버지' 등) 을 회색으로 처리 */
-        .contact-item span::first-line {
-             color: #888;
-             font-size: 0.9rem;
-        }
-
-        .contact-item .icons {
-            display: flex;
-            gap: 8px; /* 전화, 문자 아이콘 사이 간격 */
-        }
-
-        .contact-item .icons a {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            width: 38px;
-            height: 38px;
-            border: 1px solid #ddd;
-            border-radius: 50%; /* 동그란 버튼 모양 */
-            background-color: #fff;
-            text-decoration: none;
-            font-size: 1.1rem; /* 이모지 크기 */
-            color: #666;
-            transition: background-color 0.2s;
-        }
-
-        .contact-item .icons a:hover {
-            background-color: #f0f0f0;
-        }
+        .contact-group { margin-bottom: 25px; }
+        .contact-group:last-child { margin-bottom: 0; }
+        .group-title { font-size: 1rem; font-weight: 600; color: #333; margin-bottom: 15px; padding-bottom: 10px; border-bottom: 1px solid #eaeaea; }
+        .contact-group:nth-child(2) .group-title { color: #f79e9e; }
+        .contact-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; }
+        .contact-item span { font-size: 0.95rem; color: #555; display: flex; align-items: center; gap: 15px; }
+        .contact-item span b { color: #222; font-weight: 500; }
+        .contact-item span::first-line { color: #888; font-size: 0.9rem; }
+        .contact-item .icons { display: flex; gap: 8px; }
+        .contact-item .icons a { display: flex; align-items: center; justify-content: center; width: 38px; height: 38px; border: 1px solid #ddd; border-radius: 50%; background-color: #fff; text-decoration: none; font-size: 1.1rem; color: #666; transition: background-color 0.2s; }
+        .contact-item .icons a:hover { background-color: #f0f0f0; }
         
         /* 방명록 작성 모달 */
         #gbWriteModal .modal-content { text-align: left; }
@@ -380,7 +305,6 @@
             <div class="ko-title">웨딩 갤러리</div>
             <div class="gallery-grid" id="galleryGrid">
                 <div class="gallery-item" onclick="openSlider(0)"><img src="static/images/gallery1.jpg" loading="lazy"></div>
-                <div class="gallery-item" onclick="openSlider(1)"><img src="static/images/gallery2.jpg" loading="lazy"></div>
                 <div class="gallery-item" onclick="openSlider(2)"><img src="static/images/gallery3.jpg" loading="lazy"></div>
                 <div class="gallery-item" onclick="openSlider(3)"><img src="static/images/gallery4.jpg" loading="lazy"></div>
                 <div class="gallery-item" onclick="openSlider(4)"><img src="static/images/gallery5.jpg" loading="lazy"></div>
@@ -409,6 +333,13 @@
                 </div>
             </div>
             <button class="slide-btn next-btn" onclick="moveSlide(1)">&#10095;</button>
+        </div>
+
+        <div class="section-guestbook fade-in">
+            <div class="eng-title">GUESTBOOK</div>
+            <div class="ko-title">방명록</div>
+            <div class="gb-list"></div>
+            <button class="gb-write-btn" onclick="openModal('gbWriteModal')">축하 메시지 남기기</button>
         </div>
 
         <div class="account-section fade-in">
@@ -522,13 +453,8 @@
         function toggleAccount(id) { document.getElementById(id).classList.toggle('open'); }
         function copyText(id) { navigator.clipboard.writeText(document.getElementById(id).innerText).then(() => alert("복사되었습니다.")); }
 
-        // 약도 이미지 모달
         function openMapModal() { document.getElementById('mapImgModal').style.display = 'flex'; }
-        function closeMapModal(e) {
-            if (e.target.classList.contains('modal-overlay')) {
-                document.getElementById('mapImgModal').style.display = 'none';
-            }
-        }
+        function closeMapModal(e) { if (e.target.classList.contains('modal-overlay')) { document.getElementById('mapImgModal').style.display = 'none'; } }
 
         function createBubble() {
             const container = document.querySelector('.main-cover');
@@ -564,51 +490,28 @@
         const sliderWrapper = document.getElementById('sliderWrapper');
         const galleryImgs = document.querySelectorAll('.gallery-grid img');
         
-        // 갤러리 펼치기/접기
         function toggleGallery() {
             const grid = document.getElementById('galleryGrid');
             const btn = document.getElementById('moreBtn');
-            
             grid.classList.toggle('expanded');
-            
-            if (grid.classList.contains('expanded')) {
-                btn.innerText = '사진 접기';
-            } else {
-                btn.innerText = '사진 더보기';
-                document.querySelector('.section-gallery').scrollIntoView({ behavior: 'smooth' });
-            }
+            if (grid.classList.contains('expanded')) { btn.innerText = '사진 접기'; } 
+            else { btn.innerText = '사진 더보기'; document.querySelector('.section-gallery').scrollIntoView({ behavior: 'smooth' }); }
         }
 
-        // 슬라이더 열기
         function openSlider(idx) {
-            currentIdx = idx;
-            sliderWrapper.innerHTML = ''; 
+            currentIdx = idx; sliderWrapper.innerHTML = ''; 
             galleryImgs.forEach(img => {
-                const div = document.createElement('div');
-                div.classList.add('slide');
-                const newImg = document.createElement('img');
-                newImg.src = img.src;
-                div.appendChild(newImg);
-                sliderWrapper.appendChild(div);
+                const div = document.createElement('div'); div.classList.add('slide');
+                const newImg = document.createElement('img'); newImg.src = img.src;
+                div.appendChild(newImg); sliderWrapper.appendChild(div);
             });
-            document.getElementById('galleryModal').style.display = 'flex';
-            updateSlider();
+            document.getElementById('galleryModal').style.display = 'flex'; updateSlider();
         }
 
         function closeSlider() { document.getElementById('galleryModal').style.display = 'none'; }
+        function moveSlide(n) { currentIdx += n; if (currentIdx >= galleryImgs.length) currentIdx = 0; if (currentIdx < 0) currentIdx = galleryImgs.length - 1; updateSlider(); }
+        function updateSlider() { sliderWrapper.style.transform = `translateX(-${currentIdx * 100}%)`; }
 
-        function moveSlide(n) {
-            currentIdx += n;
-            if (currentIdx >= galleryImgs.length) currentIdx = 0;
-            if (currentIdx < 0) currentIdx = galleryImgs.length - 1;
-            updateSlider();
-        }
-
-        function updateSlider() {
-            sliderWrapper.style.transform = `translateX(-${currentIdx * 100}%)`;
-        }
-
-        // 드래그(스와이프) 기능 추가
         let startX = 0;
         document.getElementById('galleryModal').addEventListener('touchstart', e => startX = e.touches[0].clientX);
         document.getElementById('galleryModal').addEventListener('touchend', e => {
@@ -642,8 +545,7 @@
             const messageInput = document.querySelector('#gbMsg').value;
             
             if(!nameInput || !pwInput || !messageInput) {
-                alert("성함, 비밀번호, 내용을 모두 입력해주세요.");
-                return;
+                alert("성함, 비밀번호, 내용을 모두 입력해주세요."); return;
             }
 
             try {
@@ -651,17 +553,13 @@
                 btn.innerText = "등록 중..."; btn.disabled = true;
 
                 await addDoc(collection(db, "guestbook"), {
-                    name: nameInput,
-                    password: pwInput, 
-                    message: messageInput,
-                    timestamp: new Date()
+                    name: nameInput, password: pwInput, message: messageInput, timestamp: new Date()
                 });
                 
                 alert("축하 메시지가 등록되었습니다! 감사합니다.");
                 location.reload(); 
             } catch (e) { 
-                console.error("에러 발생: ", e); 
-                alert("등록에 실패했습니다.");
+                console.error("에러 발생: ", e); alert("등록에 실패했습니다.");
             }
         };
 
@@ -674,10 +572,7 @@
             const querySnapshot = await getDocs(q);
             
             querySnapshot.forEach((docSnap) => {
-                const data = docSnap.data();
-                const id = docSnap.id;
-                window.gbData[id] = data; 
-                
+                const data = docSnap.data(); const id = docSnap.id; window.gbData[id] = data; 
                 const dateStr = data.timestamp.toDate().toLocaleDateString();
                 
                 gbList.innerHTML += `
@@ -698,35 +593,23 @@
         window.editGuestbook = async function(id) {
             const targetData = window.gbData[id];
             const inputPw = prompt("등록 시 입력한 비밀번호 4자리를 입력해주세요.");
-            
             if (inputPw === null) return; 
-            if (inputPw !== targetData.password) {
-                alert("비밀번호가 일치하지 않습니다.");
-                return;
-            }
-
+            if (inputPw !== targetData.password) { alert("비밀번호가 일치하지 않습니다."); return; }
             const newMsg = prompt("수정할 내용을 입력해주세요.", targetData.message);
             if (newMsg && newMsg !== targetData.message) {
                 await updateDoc(doc(db, "guestbook", id), { message: newMsg });
-                alert("수정되었습니다.");
-                location.reload();
+                alert("수정되었습니다."); location.reload();
             }
         };
 
         window.deleteGuestbook = async function(id) {
             const targetData = window.gbData[id];
             const inputPw = prompt("등록 시 입력한 비밀번호 4자리를 입력해주세요.");
-            
             if (inputPw === null) return; 
-            if (inputPw !== targetData.password) {
-                alert("비밀번호가 일치하지 않습니다.");
-                return;
-            }
-
+            if (inputPw !== targetData.password) { alert("비밀번호가 일치하지 않습니다."); return; }
             if (confirm("정말 이 메시지를 삭제하시겠습니까?")) {
                 await deleteDoc(doc(db, "guestbook", id));
-                alert("삭제되었습니다.");
-                location.reload();
+                alert("삭제되었습니다."); location.reload();
             }
         };
 
