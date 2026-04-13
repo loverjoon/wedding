@@ -144,6 +144,7 @@
 
         /* 7. 마음 전하실 곳 */
         .account-section { padding: 60px 20px; text-align: center; }
+        .account-desc { font-size: 0.95rem; color: #555; line-height: 1.8; margin-bottom: 30px; }
         .account-box { background: #fff; border: 1px solid #eee; border-radius: 10px; margin-bottom: 10px; overflow: hidden; }
         .account-header { padding: 15px 20px; display: flex; justify-content: space-between; font-size: 1rem; cursor: pointer; }
         .account-body-wrap { display: none; text-align: left; background: #fafafa; border-top: 1px solid #f2f2f2; }
@@ -153,7 +154,7 @@
         .copy-btn { background: #eee; border: none; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem; cursor: pointer; float: right; }
 
         /* ======================================================== */
-        /* 공통 팝업(모달) 스타일 - 이 부분이 지워져서 화면이 깨졌습니다! */
+        /* 공통 팝업(모달) 스타일 */
         /* ======================================================== */
         .modal-overlay { 
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
@@ -163,7 +164,7 @@
             background: #fff; width: 85%; max-width: 350px; border-radius: 15px; padding: 25px; position: relative; 
         }
 
-        /* 연락처 모달 전용 스타일 (새로 수정된 예쁜 정렬) */
+        /* 연락처 모달 전용 스타일 */
         #contactModal .modal-content {
             padding: 20px;
             width: 90%;
@@ -305,6 +306,7 @@
             <div class="ko-title">웨딩 갤러리</div>
             <div class="gallery-grid" id="galleryGrid">
                 <div class="gallery-item" onclick="openSlider(0)"><img src="static/images/gallery1.jpg" loading="lazy"></div>
+                <div class="gallery-item" onclick="openSlider(1)"><img src="static/images/gallery2.jpg" loading="lazy"></div>
                 <div class="gallery-item" onclick="openSlider(2)"><img src="static/images/gallery3.jpg" loading="lazy"></div>
                 <div class="gallery-item" onclick="openSlider(3)"><img src="static/images/gallery4.jpg" loading="lazy"></div>
                 <div class="gallery-item" onclick="openSlider(4)"><img src="static/images/gallery5.jpg" loading="lazy"></div>
@@ -346,6 +348,12 @@
             <div class="eng-title">ACCOUNT</div>
             <div class="ko-title">마음 전하실 곳</div>
             
+            <p class="account-desc">
+                참석이 어려우신 분들을 위해<br>
+                계좌번호를 기재하였습니다.<br>
+                너그러운 마음으로 양해 부탁드립니다.
+            </p>
+
             <div class="account-box">
                 <div class="account-header" onclick="toggleAccount('groom-acc')"><span>신랑측 계좌번호</span><span>▼</span></div>
                 <div id="groom-acc" class="account-body-wrap">
