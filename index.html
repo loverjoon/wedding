@@ -309,6 +309,7 @@
                 <div class="gallery-item" onclick="openSlider(1)"><img src="static/images/gallery2.jpg" loading="lazy"></div>
                 <div class="gallery-item" onclick="openSlider(2)"><img src="static/images/gallery3.jpg" loading="lazy"></div>
                 <div class="gallery-item" onclick="openSlider(3)"><img src="static/images/gallery4.jpg" loading="lazy"></div>
+                <div class="gallery-item" onclick="openSlider(4)"><img src="static/images/gallery5.jpg" loading="lazy"></div>
                 <div class="gallery-item" onclick="openSlider(5)"><img src="static/images/gallery6.jpg" loading="lazy"></div>
                 <div class="gallery-item" onclick="openSlider(6)"><img src="static/images/gallery7.jpg" loading="lazy"></div>
                 <div class="gallery-item" onclick="openSlider(7)"><img src="static/images/gallery8.jpg" loading="lazy"></div>
@@ -400,7 +401,7 @@
     <div id="contactModal" class="modal-overlay" onclick="closeModal(event, 'contactModal')">
         <div class="modal-content">
             <div class="contact-group">
-                <div class="group-title">신랑측</div>
+                <div class="group-title" style="color: #f79e9e;">신랑측</div>
                 <div class="contact-item">
                     <span><em style="font-style:normal; color:#888; width:45px; display:inline-block;">신랑</em> <b>박준영</b></span>
                     <div class="icons"><a href="tel:01079319067">📞</a> <a href="sms:01079319067">✉️</a></div>
@@ -519,12 +520,63 @@
         function moveSlide(n) { currentIdx += n; if (currentIdx >= galleryImgs.length) currentIdx = 0; if (currentIdx < 0) currentIdx = galleryImgs.length - 1; updateSlider(); }
         function updateSlider() { sliderWrapper.style.transform = `translateX(-${currentIdx * 100}%)`; }
 
+        // 스와이프 및 두 손가락 확대(Pinch-to-zoom) 기능 추가
         let startX = 0;
-        document.getElementById('galleryModal').addEventListener('touchstart', e => startX = e.touches[0].clientX);
-        document.getElementById('galleryModal').addEventListener('touchend', e => {
-            let endX = e.changedTouches[0].clientX;
-            if (startX - endX > 50) moveSlide(1);  
-            if (endX - startX > 50) moveSlide(-1); 
+        let initialDistance = 0;
+        let currentScale = 1;
+        const galleryModal = document.getElementById('galleryModal');
+
+        galleryModal.addEventListener('touchstart', e => {
+            if (e.touches.length === 2) {
+                // 두 손가락 터치 시 거리 계산
+                initialDistance = Math.hypot(
+                    e.touches[0].pageX - e.touches[1].pageX,
+                    e.touches[0].pageY - e.touches[1].pageY
+                );
+            } else if (e.touches.length === 1) {
+                startX = e.touches[0].clientX;
+            }
+        });
+
+        galleryModal.addEventListener('touchmove', e => {
+            if (e.touches.length === 2) {
+                e.preventDefault(); // 확대 중 화면 스크롤 방지
+                const currentDistance = Math.hypot(
+                    e.touches[0].pageX - e.touches[1].pageX,
+                    e.touches[0].pageY - e.touches[1].pageY
+                );
+                
+                // 확대 배율 계산 (최대 3배까지만)
+                currentScale = currentDistance / initialDistance;
+                currentScale = Math.max(1, Math.min(currentScale, 3)); 
+                
+                const activeImg = document.querySelectorAll('.slide img')[currentIdx];
+                if (activeImg) {
+                    activeImg.style.transform = `scale(${currentScale})`;
+                    activeImg.style.transition = 'none';
+                }
+            }
+        }, { passive: false });
+
+        galleryModal.addEventListener('touchend', e => {
+            const activeImg = document.querySelectorAll('.slide img')[currentIdx];
+            
+            // 두 손가락을 떼면 원래 크기로 복구 (인스타그램 스타일)
+            if (currentScale > 1) {
+                if (activeImg) {
+                    activeImg.style.transform = 'scale(1)';
+                    activeImg.style.transition = 'transform 0.3s ease-out';
+                }
+                currentScale = 1;
+                return; // 확대했다가 뗄 때는 다음 사진으로 넘어가지 않게 방지
+            }
+
+            // 한 손가락 스와이프 시 다음/이전 사진으로 이동
+            if (e.changedTouches.length === 1 && currentScale === 1) {
+                let endX = e.changedTouches[0].clientX;
+                if (startX - endX > 50) moveSlide(1);  
+                if (endX - startX > 50) moveSlide(-1); 
+            }
         });
     </script>
 
