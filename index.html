@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+    <script src="https://t1.kakaocdn.net/kakao_js_sdk/2.6.0/kakao.min.js"></script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>박준영 ♥ 김민희 결혼합니다</title>
@@ -483,13 +484,20 @@
             <button class="gb-write-btn" onclick="submitGuestbook()">메시지 등록</button>
         </div>
     </div>
-
+    </div> <div style="padding: 20px;">
+            <button onclick="shareMessage()" style="padding: 15px 20px; background: #fee500; border: none; border-radius: 8px; font-family: 'Gowun Dodum'; font-size: 1rem; cursor: pointer; width: 100%;">
+                💛 카카오톡으로 공유하기
+            </button>
+        </div>
+    </div>
+    
     <div id="mapImgModal" class="modal-overlay" onclick="closeMapModal(event)">
         <div class="modal-content" style="padding: 10px; line-height: 0;">
             <img src="static/images/map.png" style="width:100%; border-radius:8px;" alt="약도">
             <p style="font-size: 0.8rem; color: #999; margin-top: 10px; line-height: 1.5; text-align: center;">창 바깥을 누르면 닫힙니다.</p>
         </div>
     </div>
+    
 
     <script src="https://ssl.daumcdn.net/dmaps/map_js_init/roughmapLoader.js"></script>
     <script>
@@ -783,6 +791,35 @@ window.showMoreGuestbook = function() {
         };
 
         loadGuestbook();
+
+        // 발급받은 JavaScript 키를 여기에 넣으세요
+        Kakao.init('a7e48fb492a564c745c174a0ac0f5904'); 
+
+        function shareMessage() {
+            Kakao.Share.sendDefault({
+                objectType: 'location', // 위치 템플릿 사용 (약도 버튼을 위해)
+                address: '경기 수원시 영통구 봉영로 1612', 
+                addressTitle: 'SY컨벤션웨딩홀',
+                content: {
+                    title: '5월 24일 박준영 ♥ 김민희 결혼합니다.',
+                    description: '소중한 분들을 초대합니다.',
+                    imageUrl: 'https://loverjoon.github.io/wedding/static/images/main_photo.jpg',
+                    link: {
+                        mobileWebUrl: 'https://loverjoon.github.io/wedding/',
+                        webUrl: 'https://loverjoon.github.io/wedding/',
+                    },
+                },
+                buttons: [
+                    {
+                        title: '모바일청첩장 보기',
+                        link: {
+                            mobileWebUrl: 'https://loverjoon.github.io/wedding/',
+                            webUrl: 'https://loverjoon.github.io/wedding/',
+                        },
+                    },
+                ],
+            });
+        }
     </script>
 </body>
 </html>
