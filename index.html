@@ -249,6 +249,42 @@
             <div class="dday-message" id="dday-message">준영, 민희의 결혼식이 00일 남았습니다.</div>
         </div>
 
+        <div class="section-gallery fade-in">
+            <div class="eng-title">GALLERY</div>
+            <div class="ko-title">웨딩 갤러리</div>
+            <div class="gallery-grid" id="galleryGrid">
+                <div class="gallery-item" onclick="openSlider(0)"><img src="static/images/gallery1.jpg" loading="lazy"></div>
+                <div class="gallery-item" onclick="openSlider(1)"><img src="static/images/gallery2.jpg" loading="lazy"></div>
+                <div class="gallery-item" onclick="openSlider(2)"><img src="static/images/gallery3.jpg" loading="lazy"></div>
+                <div class="gallery-item" onclick="openSlider(3)"><img src="static/images/gallery4.jpg" loading="lazy"></div>
+                <div class="gallery-item" onclick="openSlider(4)"><img src="static/images/gallery5.jpg" loading="lazy"></div>
+                <div class="gallery-item" onclick="openSlider(5)"><img src="static/images/gallery6.jpg" loading="lazy"></div>
+                <div class="gallery-item" onclick="openSlider(6)"><img src="static/images/gallery7.jpg" loading="lazy"></div>
+                <div class="gallery-item" onclick="openSlider(7)"><img src="static/images/gallery8.jpg" loading="lazy"></div>
+                <div class="gallery-item" onclick="openSlider(8)"><img src="static/images/gallery9.jpg" loading="lazy"></div>
+                <div class="gallery-item" onclick="openSlider(9)"><img src="static/images/gallery10.jpg" loading="lazy"></div>
+                <div class="gallery-item" onclick="openSlider(10)"><img src="static/images/gallery11.jpg" loading="lazy"></div>
+                <div class="gallery-item" onclick="openSlider(11)"><img src="static/images/gallery12.jpg" loading="lazy"></div>
+                <div class="gallery-item" onclick="openSlider(12)"><img src="static/images/gallery13.jpg" loading="lazy"></div>
+                <div class="gallery-item" onclick="openSlider(13)"><img src="static/images/gallery14.jpg" loading="lazy"></div>
+                <div class="gallery-item" onclick="openSlider(14)"><img src="static/images/gallery15.jpg" loading="lazy"></div>
+                <div class="gallery-item" onclick="openSlider(15)"><img src="static/images/gallery16.jpg" loading="lazy"></div>
+                <div class="gallery-item" onclick="openSlider(16)"><img src="static/images/gallery17.jpg" loading="lazy"></div>
+                <div class="gallery-item" onclick="openSlider(17)"><img src="static/images/gallery18.jpg" loading="lazy"></div>
+            </div>
+            <button class="more-btn" id="moreBtn" onclick="toggleGallery()">사진 더보기</button>
+        </div>
+
+        <div id="galleryModal">
+            <span class="close-slider" onclick="closeSlider()">&times;</span>
+            <button class="slide-btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
+            <div class="slider-container">
+                <div class="slider-wrapper" id="sliderWrapper">
+                </div>
+            </div>
+            <button class="slide-btn next-btn" onclick="moveSlide(1)">&#10095;</button>
+        </div>
+
         <div class="location fade-in">
             <div class="eng-title">LOCATION</div>
             <div class="ko-title">오시는 길</div>
@@ -285,8 +321,8 @@
                     <div class="t-title">🚇 지하철 이용시</div>
                     <div class="t-content">수인분당선 <b>[영통역 1번 출구]</b> 직진방향<br>홈플러스 방면 도보 4분거리</div>
                 </div>
-                <div class="t-title"><span>🚌</span> 버스 이용시</div>
                 <div class="transport-item">
+                    <div class="t-title">🚌 대중교통 버스 이용시</div>
                     <div class="t-content">
                         <b>영통역 정류장 하차 [04150]</b><br>
                         - 일반버스: 2-1, 3, 5, 13-1, 34, 34-1, 203, 720-3<br>
@@ -297,44 +333,27 @@
                 <div class="transport-item">
                     <div class="t-title">🚗 자가용 이용시</div>
                     <div class="t-content"><b>"SY컨벤션웨딩홀"</b> 또는 <b>"보보스프라자"</b> 입력<br><b>무료주차 2시간</b> (제1,2,3주차장 이용)</div>
-                </div>                
-            </div>
-        </div>
-
-        <div class="section-gallery fade-in">
-            <div class="eng-title">GALLERY</div>
-            <div class="ko-title">웨딩 갤러리</div>
-            <div class="gallery-grid" id="galleryGrid">
-                <div class="gallery-item" onclick="openSlider(0)"><img src="static/images/gallery1.jpg" loading="lazy"></div>
-                <div class="gallery-item" onclick="openSlider(1)"><img src="static/images/gallery2.jpg" loading="lazy"></div>
-                <div class="gallery-item" onclick="openSlider(2)"><img src="static/images/gallery3.jpg" loading="lazy"></div>
-                <div class="gallery-item" onclick="openSlider(3)"><img src="static/images/gallery4.jpg" loading="lazy"></div>
-                <div class="gallery-item" onclick="openSlider(4)"><img src="static/images/gallery5.jpg" loading="lazy"></div>
-                <div class="gallery-item" onclick="openSlider(5)"><img src="static/images/gallery6.jpg" loading="lazy"></div>
-                <div class="gallery-item" onclick="openSlider(6)"><img src="static/images/gallery7.jpg" loading="lazy"></div>
-                <div class="gallery-item" onclick="openSlider(7)"><img src="static/images/gallery8.jpg" loading="lazy"></div>
-                <div class="gallery-item" onclick="openSlider(8)"><img src="static/images/gallery9.jpg" loading="lazy"></div>
-                <div class="gallery-item" onclick="openSlider(9)"><img src="static/images/gallery10.jpg" loading="lazy"></div>
-                <div class="gallery-item" onclick="openSlider(10)"><img src="static/images/gallery11.jpg" loading="lazy"></div>
-                <div class="gallery-item" onclick="openSlider(11)"><img src="static/images/gallery12.jpg" loading="lazy"></div>
-                <div class="gallery-item" onclick="openSlider(12)"><img src="static/images/gallery13.jpg" loading="lazy"></div>
-                <div class="gallery-item" onclick="openSlider(13)"><img src="static/images/gallery14.jpg" loading="lazy"></div>
-                <div class="gallery-item" onclick="openSlider(14)"><img src="static/images/gallery15.jpg" loading="lazy"></div>
-                <div class="gallery-item" onclick="openSlider(15)"><img src="static/images/gallery16.jpg" loading="lazy"></div>
-                <div class="gallery-item" onclick="openSlider(16)"><img src="static/images/gallery17.jpg" loading="lazy"></div>
-                <div class="gallery-item" onclick="openSlider(17)"><img src="static/images/gallery18.jpg" loading="lazy"></div>
-            </div>
-            <button class="more-btn" id="moreBtn" onclick="toggleGallery()">사진 더보기</button>
-        </div>
-
-        <div id="galleryModal">
-            <span class="close-slider" onclick="closeSlider()">&times;</span>
-            <button class="slide-btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
-            <div class="slider-container">
-                <div class="slider-wrapper" id="sliderWrapper">
+                </div>
+                
+                <div class="transport-item" style="margin-top: 40px; border-top: 1px dashed #e0e0e0; padding-top: 30px;">
+                    <div class="t-title">🚍 전세버스 안내</div>
+                    <div class="t-content">
+                        <div style="margin-bottom: 20px; background: #fff; border: 1px solid #f0f0f0; padding: 15px; border-radius: 8px;">
+                            <b style="color: #f79e9e; font-size: 1rem; display: block; margin-bottom: 8px;">[구미 출발]</b>
+                            <span style="display:inline-block; width:45px; color:#888;">시간</span> 오전 9시 50분까지 탑승<br>
+                            <span style="display:inline-block; width:45px; color:#888;">장소</span> 구미시청 (송정대로 55)<br>
+                            <span style="display:inline-block; width:45px; color:#888;">차량</span> 경북75바 3242
+                        </div>
+                        <div style="background: #fff; border: 1px solid #f0f0f0; padding: 15px; border-radius: 8px;">
+                            <b style="color: #f79e9e; font-size: 1rem; display: block; margin-bottom: 8px;">[대구 출발]</b>
+                            <span style="display:inline-block; width:45px; color:#888;">시간</span> 오전 9시 20분 출발<br>
+                            <span style="display:inline-block; width:45px; color:#888;">장소</span> 대구 스타디움 제3주차장<br>
+                            <span style="display:inline-block; width:45px;"></span> <span style="font-size: 0.85rem; color:#888;">(유니버시아드로 180)</span><br>
+                            <span style="display:inline-block; width:45px; color:#888;">차량</span> 경북75바 5142
+                        </div>
+                    </div>
                 </div>
             </div>
-            <button class="slide-btn next-btn" onclick="moveSlide(1)">&#10095;</button>
         </div>
 
         <div class="section-guestbook fade-in">
@@ -520,22 +539,34 @@
         function moveSlide(n) { currentIdx += n; if (currentIdx >= galleryImgs.length) currentIdx = 0; if (currentIdx < 0) currentIdx = galleryImgs.length - 1; updateSlider(); }
         function updateSlider() { sliderWrapper.style.transform = `translateX(-${currentIdx * 100}%)`; }
 
-        // 스와이프 및 두 손가락 확대(Pinch-to-zoom) 기능 추가 (오작동 방지 완벽 적용)
+        // 스와이프 및 두 손가락 확대 + 상하좌우 이동(패닝) 완벽 적용
         let startX = 0;
         let initialDistance = 0;
         let currentScale = 1;
-        let isZooming = false; // 확대/축소 중인지 체크하는 안전장치
+        let isZooming = false; 
+
+        // 두 손가락 중심점 추적용 변수 (상하좌우 이동을 위함)
+        let initialCenterX = 0;
+        let initialCenterY = 0;
+        let translateX = 0;
+        let translateY = 0;
+
         const galleryModal = document.getElementById('galleryModal');
 
         galleryModal.addEventListener('touchstart', e => {
             if (e.touches.length === 2) {
-                isZooming = true; // 두 손가락이 닿으면 확대 모드로 인식
+                isZooming = true;
+                
+                // 두 손가락 사이의 최초 거리
                 initialDistance = Math.hypot(
                     e.touches[0].pageX - e.touches[1].pageX,
                     e.touches[0].pageY - e.touches[1].pageY
                 );
+                
+                // 두 손가락의 최초 중심점 (어디를 짚었는지)
+                initialCenterX = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+                initialCenterY = (e.touches[0].clientY + e.touches[1].clientY) / 2;
             } else if (e.touches.length === 1 && !isZooming) {
-                // 확대 모드가 아닐 때만 스와이프 시작점 기록
                 startX = e.touches[0].clientX;
             }
         });
@@ -544,18 +575,29 @@
             if (e.touches.length === 2) {
                 isZooming = true;
                 e.preventDefault(); // 스크롤 방지
+                
+                // 현재 두 손가락 사이의 거리
                 const currentDistance = Math.hypot(
                     e.touches[0].pageX - e.touches[1].pageX,
                     e.touches[0].pageY - e.touches[1].pageY
                 );
                 
-                // 확대 배율 적용 (최대 3배)
+                // 현재 두 손가락의 중심점
+                const currentCenterX = (e.touches[0].clientX + e.touches[1].clientX) / 2;
+                const currentCenterY = (e.touches[0].clientY + e.touches[1].clientY) / 2;
+                
+                // 중심점이 이동한 만큼 사진도 이동시킴 (패닝)
+                translateX = currentCenterX - initialCenterX;
+                translateY = currentCenterY - initialCenterY;
+                
+                // 확대 배율 적용 (최대 4배까지)
                 currentScale = currentDistance / initialDistance;
-                currentScale = Math.max(1, Math.min(currentScale, 3)); 
+                currentScale = Math.max(1, Math.min(currentScale, 4)); 
                 
                 const activeImg = document.querySelectorAll('.slide img')[currentIdx];
                 if (activeImg) {
-                    activeImg.style.transform = `scale(${currentScale})`;
+                    // 확대와 이동을 동시에 적용
+                    activeImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentScale})`;
                     activeImg.style.transition = 'none';
                 }
             }
@@ -564,23 +606,26 @@
         galleryModal.addEventListener('touchend', e => {
             const activeImg = document.querySelectorAll('.slide img')[currentIdx];
             
-            // 1. 방금까지 확대를 하던 중이었을 경우
             if (isZooming) {
-                // 사진 크기 원래대로 복구
+                // 손을 떼면 크기와 위치 모두 원래대로 쏙 돌아오기 (Snap-back)
                 if (activeImg) {
-                    activeImg.style.transform = 'scale(1)';
+                    activeImg.style.transform = 'translate(0px, 0px) scale(1)';
                     activeImg.style.transition = 'transform 0.3s ease-out';
                 }
+                
+                // 변수 초기화
                 currentScale = 1;
+                translateX = 0;
+                translateY = 0;
 
-                // 화면에서 모든 손가락이 완전히 떨어지면 약간의 딜레이 후 확대 모드 종료
+                // 손가락이 화면에서 모두 떨어지면 안전장치 해제
                 if (e.touches.length === 0) {
                     setTimeout(() => { isZooming = false; }, 100); 
                 }
-                return; // 넘기기(스와이프) 동작을 강제로 중단
+                return; 
             }
 
-            // 2. 확대를 안 하고 가볍게 한 손가락으로 밀었을 경우 (정상 스와이프)
+            // 확대를 안 한 상태에서 한 손가락으로 밀었을 때만 이전/다음 사진 넘기기
             if (!isZooming && e.changedTouches.length === 1) {
                 let endX = e.changedTouches[0].clientX;
                 if (startX - endX > 50) moveSlide(1);  
