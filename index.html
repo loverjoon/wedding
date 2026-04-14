@@ -161,6 +161,33 @@
         .account-item:last-child { border-bottom: none; }
         .copy-btn { background: #eee; border: none; padding: 5px 10px; border-radius: 5px; font-size: 0.8rem; cursor: pointer; float: right; }
 
+        /* BGM 음악 버튼 스타일 */
+        .bgm-btn {
+            position: fixed;
+            top: 25px;
+            right: 20px; /* 화면 오른쪽에 고정 */
+            width: 45px;
+            height: 45px;
+            background: rgba(255, 255, 255, 0.9);
+            border: 1px solid #eee;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.3rem;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.08);
+            z-index: 9999; /* 항상 맨 위에 보이게 */
+            cursor: pointer;
+        }
+        /* 음악이 재생될 때 둥글게 도는 효과 */
+        .bgm-btn.playing {
+            animation: spin 4s linear infinite;
+            background: #fff8f8; /* 켜지면 살짝 핑크빛으로 */
+        }
+        @keyframes spin { 
+            100% { transform: rotate(360deg); } 
+        }
+
         /* ======================================================== */
         /* 공통 팝업(모달) 스타일 */
         /* ======================================================== */
@@ -203,6 +230,13 @@
 </head>
 <body>
     <div class="wrap">
+        
+        <audio id="bgm" loop>
+            <source src="static/images/bgm.mp3" type="audio/mpeg">
+        </audio>
+        <div id="bgm-btn" class="bgm-btn" onclick="toggleBgm()">
+            🎵
+        </div>
         <div class="main-cover fade-in">
             <div class="names">박준영 <span style="color: #ff3333;">♥</span> 김민희</div>
             <div class="main-img-box">
@@ -789,7 +823,7 @@
 
         loadGuestbook();
     </script> 
-
+    
     <script>
         // 에러 방지: 카카오 코드가 중복으로 실행되지 않도록 막아주는 장치입니다.
         if (!Kakao.isInitialized()) {
@@ -821,6 +855,21 @@
                 ],
             });
         }
+        
+        // BGM 재생 및 일시정지 기능
+        function toggleBgm() {
+            const bgm = document.getElementById('bgm');
+            const btn = document.getElementById('bgm-btn');
+            
+            if (bgm.paused) {
+                bgm.play(); // 음악 켜기
+                btn.classList.add('playing'); // 도는 애니메이션 추가
+            } else {
+                bgm.pause(); // 음악 끄기
+                btn.classList.remove('playing'); // 도는 애니메이션 제거
+            }
+        }
     </script>
+    
 </body>
 </html>
