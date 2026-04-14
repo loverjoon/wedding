@@ -21,10 +21,9 @@
         .wrap {
             max-width: 420px;
             margin: 0 auto;
-            /* 아주 미세한 미색이 섞인 하얀색 (전통 한지 느낌) */
             background-color: #fcfaf5; 
-            /* SVG 노이즈 필터를 이용한 실시간 질감 생성 */
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.1'/%3E%3C/svg%3E");
+            /* opacity를 0.15로 올리고, baseFrequency를 약간 낮춰 입자를 더 잘 보이게 함 */
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.15'/%3E%3C/svg%3E");
             min-height: 100vh;
             padding-bottom: 60px;
             overflow: hidden;
