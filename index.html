@@ -667,7 +667,7 @@
         });
     </script>
 
-    <script type="module">
+   <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
         import { getFirestore, collection, addDoc, getDocs, query, orderBy, doc, deleteDoc, updateDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
@@ -709,66 +709,60 @@
             }
         };
 
-        // 스크립트 상단에 변수 추가
-        let allGuestbookData = []; // 전체 데이터를 담을 배열
-        let currentViewCount = 5;  // 처음에 보여줄 개수
+        let allGuestbookData = []; 
+        let currentViewCount = 5;  
 
-        // 기존 loadGuestbook 함수를 이 내용으로 교체하세요
         async function loadGuestbook() {
             const q = query(collection(db, "guestbook"), orderBy("timestamp", "desc"));
             const querySnapshot = await getDocs(q);
             
-            allGuestbookData = []; // 배열 초기화
+            allGuestbookData = []; 
             querySnapshot.forEach((docSnap) => {
                 allGuestbookData.push({ id: docSnap.id, ...docSnap.data() });
             });
 
-            renderGuestbook(); // 화면 그리기 호출
+            renderGuestbook(); 
         }
 
-        // 방명록을 화면에 그리는 함수 추가
         function renderGuestbook() {
             const gbList = document.querySelector('.gb-list');
             const moreBtn = document.querySelector('#gbMoreBtn');
             if(!gbList) return;
 
             gbList.innerHTML = ''; 
-    
-    // 현재 보여줄 개수만큼만 잘라서 표시
-    const visibleData = allGuestbookData.slice(0, currentViewCount);
-    
-    visibleData.forEach((data) => {
-        const id = data.id;
-        window.gbData[id] = data; 
-        const dateStr = data.timestamp.toDate().toLocaleDateString();
-        
-        gbList.innerHTML += `
-            <div class="gb-card">
-                <div class="gb-info">
-                    <span>${data.name} | ${dateStr}</span>
-                    <span class="gb-actions">
-                        <span onclick="editGuestbook('${id}')">수정</span>
-                        <span onclick="deleteGuestbook('${id}')">삭제</span>
-                    </span>
-                </div>
-                <div class="gb-text">${data.message}</div>
-            </div>
-        `;
-    });
+            
+            const visibleData = allGuestbookData.slice(0, currentViewCount);
+            
+            visibleData.forEach((data) => {
+                const id = data.id;
+                window.gbData[id] = data; 
+                const dateStr = data.timestamp.toDate().toLocaleDateString();
+                
+                gbList.innerHTML += `
+                    <div class="gb-card">
+                        <div class="gb-info">
+                            <span>${data.name} | ${dateStr}</span>
+                            <span class="gb-actions">
+                                <span onclick="editGuestbook('${id}')">수정</span>
+                                <span onclick="deleteGuestbook('${id}')">삭제</span>
+                            </span>
+                        </div>
+                        <div class="gb-text">${data.message}</div>
+                    </div>
+                `;
+            });
 
-    // 전체 데이터가 현재 보여주는 개수보다 많으면 '더보기' 버튼 노출
-    if (allGuestbookData.length > currentViewCount) {
-        moreBtn.style.display = 'inline-block';
-    } else {
-        moreBtn.style.display = 'none';
-    }
-}
+            if (allGuestbookData.length > currentViewCount) {
+                moreBtn.style.display = 'inline-block';
+            } else {
+                moreBtn.style.display = 'none';
+            }
+        }
 
-// '더보기' 버튼 클릭 시 실행될 함수 추가
-window.showMoreGuestbook = function() {
-    currentViewCount += 5; // 5개씩 추가
-    renderGuestbook();
-};
+        window.showMoreGuestbook = function() {
+            currentViewCount += 5; 
+            renderGuestbook();
+        };
 
         window.editGuestbook = async function(id) {
             const targetData = window.gbData[id];
@@ -794,16 +788,20 @@ window.showMoreGuestbook = function() {
         };
 
         loadGuestbook();
+    </script> 
 
-        // 발급받은 JavaScript 키를 여기에 넣으세요
-        Kakao.init('a7e48fb492a564c745c174a0ac0f5904'); 
+    <script>
+        // 에러 방지: 카카오 코드가 중복으로 실행되지 않도록 막아주는 장치입니다.
+        if (!Kakao.isInitialized()) {
+            Kakao.init('a7e48fb492a564c745c174a0ac0f5904'); 
+        }
 
-        window.shareMessage = function() {
+        function shareMessage() {
             Kakao.Share.sendDefault({
-                objectType: 'location', // 위치 템플릿 사용 (약도 버튼을 위해)
+                objectType: 'location', 
                 address: '경기 수원시 영통구 봉영로 1612', 
                 addressTitle: 'SY컨벤션웨딩홀',
-                ccontent: {
+                content: {
                     title: '5월 24일 박준영 ❤️ 김민희 결혼합니다.',
                     description: '소중한 분들을 초대합니다.',
                     imageUrl: 'https://loverjoon.github.io/wedding/static/images/main_photo.jpg',
