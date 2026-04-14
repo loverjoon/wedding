@@ -869,6 +869,29 @@
                 btn.classList.remove('playing'); // 도는 애니메이션 제거
             }
         }
+        // 하객의 첫 동작(클릭, 터치, 스크롤) 시 음악을 재생하는 함수
+        const playOnFirstInteraction = () => {
+            const bgm = document.getElementById('bgm');
+            const btn = document.getElementById('bgm-btn');
+            
+            // 재생 시도 (성공 시 버튼 애니메이션 활성화)
+            bgm.play().then(() => {
+                btn.classList.add('playing');
+                
+                // 한 번 재생에 성공하면 더 이상 감지할 필요가 없으므로 이벤트 제거
+                document.removeEventListener('click', playOnFirstInteraction);
+                document.removeEventListener('touchstart', playOnFirstInteraction);
+                window.removeEventListener('scroll', playOnFirstInteraction);
+            }).catch(error => {
+                // 브라우저가 여전히 거부할 경우 로그만 남김
+                console.log("Autoplay blocked by browser policy.");
+            });
+        };
+        
+        // 사용자의 동작을 감시하는 리스너 등록
+        document.addEventListener('click', playOnFirstInteraction);
+        document.addEventListener('touchstart', playOnFirstInteraction);
+        window.addEventListener('scroll', playOnFirstInteraction);
     </script>
     
 </body>
