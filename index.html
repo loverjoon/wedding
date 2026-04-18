@@ -584,7 +584,7 @@
             const d = Math.random() * 5 + 6; b.style.animation = `floatUp ${d}s linear forwards, sway ${Math.random() * 2 + 2}s ease-in-out infinite alternate`;
             container.appendChild(b); setTimeout(() => b.remove(), d * 1000);
         }
-        setInterval(createBubble, 700);
+        // setInterval(createBubble, 700);
 
         const target = new Date("2026-05-24T14:00:00").getTime();
         function update() {
