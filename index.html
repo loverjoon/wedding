@@ -620,16 +620,38 @@
             else { btn.innerText = '사진 더보기'; document.querySelector('.section-gallery').scrollIntoView({ behavior: 'smooth' }); }
         }
 
-        function openSlider(idx) {
-            currentIdx = idx; sliderWrapper.innerHTML = ''; 
-            galleryImgs.forEach(img => {
-                const div = document.createElement('div'); div.classList.add('slide');
-                const newImg = document.createElement('img'); newImg.src = img.src;
-                div.appendChild(newImg); sliderWrapper.appendChild(div);
-            });
-            document.getElementById('galleryModal').style.display = 'flex'; updateSlider();
-        }
+        let isSliderInitialized = false; // 사진 세팅 여부 확인용 변수 추가
 
+        function openSlider(idx) {
+            currentIdx = idx; 
+            
+            // 렉 해결 핵심: 매번 17장을 새로 만들지 않고, 최초 1회만 만들어서 재사용!
+            if (!isSliderInitialized) {
+                sliderWrapper.innerHTML = ''; 
+                galleryImgs.forEach(img => {
+                    const div = document.createElement('div'); 
+                    div.classList.add('slide');
+                    const newImg = document.createElement('img'); 
+                    newImg.src = img.src;
+                    newImg.loading = "lazy"; // 화면에 안 보이는 사진은 렌더링 늦춤 (메모리 절약)
+                    div.appendChild(newImg); 
+                    sliderWrapper.appendChild(div);
+                });
+                isSliderInitialized = true;
+            }
+
+            document.getElementById('galleryModal').style.display = 'flex'; 
+            
+            // 모달을 열 때 첫 장부터 촤르륵 넘어가는 애니메이션 방지 (즉시 이동)
+            sliderWrapper.style.transition = 'none';
+            updateSlider();
+            
+            // 창이 열린 직후부터 다시 부드러운 스와이프 애니메이션 활성화
+            setTimeout(() => {
+                sliderWrapper.style.transition = 'transform 0.3s ease-out';
+            }, 50);
+        }
+        
         function closeSlider() { document.getElementById('galleryModal').style.display = 'none'; }
         function moveSlide(n) { currentIdx += n; if (currentIdx >= galleryImgs.length) currentIdx = 0; if (currentIdx < 0) currentIdx = galleryImgs.length - 1; updateSlider(); }
         function updateSlider() { sliderWrapper.style.transform = `translateX(-${currentIdx * 100}%)`; }
