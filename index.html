@@ -141,10 +141,30 @@
 
         /* 슬라이드 모달 스타일 */
         #galleryModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 20000; justify-content: center; align-items: center; }
-        .slider-container { width: 100%; max-width: 420px; position: relative; overflow: hidden; touch-action: pan-y; }
+        .slider-wrapper { 
+            display: flex; 
+            transition: transform 0.3s ease-out; 
+            /* 안드로이드 버벅임 방지 (GPU 하드웨어 가속 강제 활성화) */
+            will-change: transform;
+            transform: translateZ(0);
+        }
         .slider-wrapper { display: flex; transition: transform 0.3s ease-out; }
-        .slide { min-width: 100%; display: flex; justify-content: center; align-items: center; }
-        .slide img { width: 90%; max-height: 80vh; object-fit: contain; border-radius: 15px; }
+        .slide { 
+            min-width: 100%; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+        }
+        .slide img { 
+            width: 90%; 
+            max-height: 80vh; 
+            object-fit: contain; 
+            border-radius: 15px; 
+            /* 안드로이드 이미지 렌더링 최적화 */
+            will-change: transform;
+            transform: translateZ(0);
+            backface-visibility: hidden;
+        }
         .slide-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.2); color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; z-index: 20001; }
         .prev-btn { left: 10px; }
         .next-btn { right: 10px; }
