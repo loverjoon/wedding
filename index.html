@@ -256,37 +256,39 @@
         @keyframes floatUp { 0% { bottom: -50px; opacity: 0; } 10% { opacity: 0.7; } 80% { opacity: 0.7; } 100% { bottom: 100%; opacity: 0; } }
         @keyframes sway { 0% { transform: translateX(-15px); } 100% { transform: translateX(15px); } }
 
-        /* --- Swiper 갤러리 디자인 (미니멀 하단 배치) --- */
+        /* --- Swiper 갤러리 디자인 (반투명 캡슐형) --- */
         
-        /* 1. 숫자 부분 (배경 없애고 깔끔한 텍스트만) */
+        /* 1. 바탕 (약간 불투명한 검정 바탕 + 글자 크기 축소) */
         .swiper-pagination-fraction {
-            background: transparent !important;
-            backdrop-filter: none !important;
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 0.95rem;
-            width: 80px !important; /* 숫자 영역 너비 고정 */
+            background: rgba(0, 0, 0, 0.4) !important; /* 사진처럼 약간 불투명한 검정 바탕 */
+            color: #fff !important;
+            font-size: 0.8rem !important; /* 글자 크기 쪼만하게 축소 */
+            width: 100px !important; /* 캡슐 전체 너비 */
+            height: 28px !important; /* 캡슐 높이 */
+            line-height: 28px !important; /* 글자 세로 중앙 정렬 */
+            border-radius: 15px !important; /* 둥근 캡슐 모양 */
             left: 50% !important;
             transform: translateX(-50%);
-            bottom: 35px !important; /* 화면 맨 밑에서 띄우기 */
-            letter-spacing: 2px;
-            font-weight: 300;
+            bottom: 30px !important; /* 사진 하단에 예쁘게 띄우기 */
+            letter-spacing: 1px;
         }
 
-        /* 2. 화살표 (원형 배경 없애고 숫자 양옆으로 바짝 붙이기) */
+        /* 2. 화살표 (바탕 안으로 쏙 들어가게 조그맣게 배치) */
         .swiper-button-next, .swiper-button-prev {
-            color: rgba(255, 255, 255, 0.9) !important;
-            --swiper-navigation-size: 15px !important; /* 화살표 크기 아주 작게 축소 */
-            background: transparent !important; /* 동그란 배경 완전 제거 */
+            color: #fff !important;
+            --swiper-navigation-size: 11px !important; /* 화살표 크기 진짜 쪼만하게! */
+            background: transparent !important; /* 개별 배경 없앰 */
             width: 30px !important;
-            height: 30px !important;
-            top: auto !important; /* 기존 세로 중앙에 있던 설정 무효화 */
-            bottom: 30px !important; /* 숫자와 동일한 선상에 배치 (미세조정) */
+            height: 28px !important;
+            top: auto !important; 
+            bottom: 30px !important; /* 바탕(숫자)과 똑같은 높이로 맞춤 */
             margin-top: 0 !important;
+            z-index: 100; /* 글자보다 위에 보이게 */
         }
         
-        /* 화면 중앙(50%)을 기준으로 화살표 위치 정밀 조절 */
-        .swiper-button-prev { left: calc(50% - 65px) !important; }
-        .swiper-button-next { right: calc(50% - 65px) !important; }
+        /* 화살표 위치를 반투명 캡슐의 양쪽 끝부분에 딱 맞춤 */
+        .swiper-button-prev { left: calc(50% - 50px) !important; }
+        .swiper-button-next { right: calc(50% - 50px) !important; }
     </style>
 </head>
 <body>
