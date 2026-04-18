@@ -141,11 +141,33 @@
         /* 5. 갤러리 */
         .section-gallery { padding: 60px 20px; text-align: center; box-sizing: border-box; }
         .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; margin-top: 30px; width: 100%; }
-        .gallery-item { aspect-ratio: 1 / 1; cursor: pointer; border-radius: 12px; overflow: hidden; background-color: #eee; display: none; }
+        
+        .gallery-item { 
+            aspect-ratio: 1 / 1; cursor: pointer; border-radius: 12px; overflow: hidden; background-color: #eee; display: none; 
+            touch-action: manipulation; /* 갤러리 사진 클릭 시 딜레이 0초로 강제 삭제 */
+        }
         .gallery-item img { width: 100%; height: 100%; object-fit: cover; display: block; }
+        
+        /* 처음 9장은 항상 보이게 유지 */
         .gallery-item:nth-child(-n+9) { display: block; }
-        .gallery-grid.expanded .gallery-item { display: block; }
-        .more-btn { margin-top: 20px; padding: 10px 20px; background: #fff; border: 1px solid #eee; border-radius: 20px; font-family: 'Gowun Dodum', sans-serif; font-size: 0.85rem; color: #888; cursor: pointer; width: 80%; }
+        
+        /* 10번째 사진부터는 '더보기' 누를 때 버벅임 없이 스르륵 나타나게 처리! */
+        .gallery-grid.expanded .gallery-item:nth-child(n+10) { 
+            display: block; 
+            animation: smoothAppear 0.3s ease-out forwards; 
+        }
+        
+        .more-btn { 
+            margin-top: 20px; padding: 10px 20px; background: #fff; border: 1px solid #eee; border-radius: 20px; 
+            font-family: 'Gowun Dodum', sans-serif; font-size: 0.85rem; color: #888; cursor: pointer; width: 80%; 
+            touch-action: manipulation; /* 핵심 범인 해결: 버튼의 0.3초 대기시간 완전 박멸! */
+        }
+
+        /* 고급스러운 스르륵 애니메이션 */
+        @keyframes smoothAppear { 
+            0% { opacity: 0; transform: translateY(10px); } 
+            100% { opacity: 1; transform: translateY(0); } 
+        }
 
         /* 슬라이드 모달 스타일 (Swiper 용으로 덮어씀) */
         #galleryModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 20000; justify-content: center; align-items: center; }
@@ -327,9 +349,9 @@
             <span class="close-btn" onclick="closeSlider(event)" style="position: absolute; top: 20px; right: 20px; color: #fff; font-size: 35px; z-index: 10001; cursor: pointer;">×</span>
             <div class="swiper mySwiper" style="width: 100%; height: 100%;">
                 <div class="swiper-wrapper" id="swiperWrapper"></div>
-                <div class="swiper-pagination" style="color: white; bottom: 30px; font-size: 1.1rem;"></div>
-                <div class="swiper-button-next" style="color: rgba(255,255,255,0.6);"></div>
-                <div class="swiper-button-prev" style="color: rgba(255,255,255,0.6);"></div>
+                <div class="swiper-pagination"></div>
+                <div class="swiper-button-next"></div>
+                <div class="swiper-button-prev"></div>
             </div>
         </div>
 
@@ -564,6 +586,38 @@
         }
         setInterval(createBubble, 700);
 
+        /* --- Swiper 갤러리 디자인 업그레이드 --- */
+        
+        /* 1. 숫자(Pagination) 캡슐 모양으로 예쁘게 */
+        .swiper-pagination-fraction {
+            background: rgba(255, 255, 255, 0.25); /* 반투명 흰색 배경 */
+            backdrop-filter: blur(4px); /* 고급스러운 블러 효과 */
+            color: #fff;
+            padding: 6px 18px;
+            border-radius: 20px; /* 동그란 캡슐 모양 */
+            font-size: 0.9rem;
+            width: auto !important; /* 기본 100% 너비 해제 */
+            left: 50% !important;
+            transform: translateX(-50%);
+            bottom: 40px !important; /* 살짝 위로 띄움 */
+            letter-spacing: 2px;
+        }
+
+        /* 2. 양옆 화살표 크기 줄이고 반투명 원형 버튼으로 */
+        .swiper-button-next, .swiper-button-prev {
+            color: #fff !important;
+            --swiper-navigation-size: 18px !important; /* 화살표 크기 대폭 축소 (기본 44px) */
+            background: rgba(0, 0, 0, 0.3); /* 반투명 검은 배경 */
+            width: 42px !important;
+            height: 42px !important;
+            border-radius: 50%; /* 완전한 원형 */
+            margin-top: -21px; 
+        }
+        
+        /* 화살표 위치 살짝 안쪽으로 당기기 */
+        .swiper-button-prev { left: 15px !important; }
+        .swiper-button-next { right: 15px !important; }
+        
         const target = new Date("2026-05-24T14:00:00").getTime();
         function update() {
             const gap = target - new Date().getTime();
