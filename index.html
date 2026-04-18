@@ -28,10 +28,7 @@
         .wrap {
             max-width: 420px;
             margin: 0 auto;
-            
-            /* ▼ 범인이었던 이 줄을 지웠습니다! (또는 transparent로 변경) ▼ */
             background-color: transparent; 
-            
             position: relative; 
             min-height: 100vh;
             padding-bottom: 60px;
@@ -39,7 +36,7 @@
             box-shadow: 0 0 30px rgba(0,0,0,0.05);
         }
 
-        /* 2. 렉 없는 고정 한지 배경 (기존과 동일) */
+        /* 2. 렉 없는 고정 한지 배경 */
         .wrap::before {
             content: "";
             position: fixed; 
@@ -49,11 +46,9 @@
             width: 100%;
             max-width: 420px; 
             height: 100vh; 
-            
             background-image: url('static/images/hanji_bg.jpg'); 
             background-size: cover;
             background-position: center;
-            
             z-index: -1; 
             pointer-events: none; 
         }
@@ -152,36 +147,8 @@
         .gallery-grid.expanded .gallery-item { display: block; }
         .more-btn { margin-top: 20px; padding: 10px 20px; background: #fff; border: 1px solid #eee; border-radius: 20px; font-family: 'Gowun Dodum', sans-serif; font-size: 0.85rem; color: #888; cursor: pointer; width: 80%; }
 
-        /* 슬라이드 모달 스타일 */
+        /* 슬라이드 모달 스타일 (Swiper 용으로 덮어씀) */
         #galleryModal { display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.9); z-index: 20000; justify-content: center; align-items: center; }
-        .slider-wrapper { 
-            display: flex; 
-            transition: transform 0.3s ease-out; 
-            /* 안드로이드 버벅임 방지 (GPU 하드웨어 가속 강제 활성화) */
-            will-change: transform;
-            transform: translateZ(0);
-        }
-        .slider-wrapper { display: flex; transition: transform 0.3s ease-out; }
-        .slide { 
-            min-width: 100%; 
-            display: flex; 
-            justify-content: center; 
-            align-items: center; 
-        }
-        .slide img { 
-            width: 90%; 
-            max-height: 80vh; 
-            object-fit: contain; 
-            border-radius: 15px; 
-            /* 안드로이드 이미지 렌더링 최적화 */
-            will-change: transform;
-            transform: translateZ(0);
-            backface-visibility: hidden;
-        }
-        .slide-btn { position: absolute; top: 50%; transform: translateY(-50%); background: rgba(255,255,255,0.2); color: #fff; border: none; width: 40px; height: 40px; border-radius: 50%; font-size: 1.2rem; cursor: pointer; z-index: 20001; }
-        .prev-btn { left: 10px; }
-        .next-btn { right: 10px; }
-        .close-slider { position: absolute; top: 20px; right: 20px; color: #fff; font-size: 2rem; cursor: pointer; z-index: 20002; }
 
         /* 6. 방명록 섹션 */
         .section-guestbook { padding: 60px 25px; text-align: center; background-color: transparent; }
@@ -208,7 +175,7 @@
         .bgm-btn {
             position: fixed;
             top: 25px;
-            right: 20px; /* 화면 오른쪽에 고정 */
+            right: 20px;
             width: 45px;
             height: 45px;
             background: rgba(255, 255, 255, 0.9);
@@ -219,21 +186,18 @@
             justify-content: center;
             font-size: 1.3rem;
             box-shadow: 0 4px 10px rgba(0,0,0,0.08);
-            z-index: 9999; /* 항상 맨 위에 보이게 */
+            z-index: 9999; 
             cursor: pointer;
         }
-        /* 음악이 재생될 때 둥글게 도는 효과 */
         .bgm-btn.playing {
             animation: spin 4s linear infinite;
-            background: #fff8f8; /* 켜지면 살짝 핑크빛으로 */
+            background: #fff8f8; 
         }
         @keyframes spin { 
             100% { transform: rotate(360deg); } 
         }
 
-        /* ======================================================== */
         /* 공통 팝업(모달) 스타일 */
-        /* ======================================================== */
         .modal-overlay { 
             display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; 
             background: rgba(0, 0, 0, 0.8); z-index: 10000; align-items: center; justify-content: center; 
@@ -359,14 +323,14 @@
             <button class="more-btn" id="moreBtn" onclick="toggleGallery()">사진 더보기</button>
         </div>
 
-        <div id="galleryModal">
-            <span class="close-slider" onclick="closeSlider()">&times;</span>
-            <button class="slide-btn prev-btn" onclick="moveSlide(-1)">&#10094;</button>
-            <div class="slider-container">
-                <div class="slider-wrapper" id="sliderWrapper">
-                </div>
+        <div id="galleryModal" class="modal-overlay" onclick="closeSlider(event)">
+            <span class="close-btn" onclick="closeSlider(event)" style="position: absolute; top: 20px; right: 20px; color: #fff; font-size: 35px; z-index: 10001; cursor: pointer;">×</span>
+            <div class="swiper mySwiper" style="width: 100%; height: 100%;">
+                <div class="swiper-wrapper" id="swiperWrapper"></div>
+                <div class="swiper-pagination" style="color: white; bottom: 30px; font-size: 1.1rem;"></div>
+                <div class="swiper-button-next" style="color: rgba(255,255,255,0.6);"></div>
+                <div class="swiper-button-prev" style="color: rgba(255,255,255,0.6);"></div>
             </div>
-            <button class="slide-btn next-btn" onclick="moveSlide(1)">&#10095;</button>
         </div>
 
         <div class="location fade-in">
@@ -568,7 +532,6 @@
     </div>
 
     
-    
     <div id="mapImgModal" class="modal-overlay" onclick="closeMapModal(event)">
         <div class="modal-content" style="padding: 10px; line-height: 0;">
             <img src="static/images/map.png" style="width:100%; border-radius:8px;" alt="약도">
@@ -632,135 +595,61 @@
             else { btn.innerText = '사진 더보기'; document.querySelector('.section-gallery').scrollIntoView({ behavior: 'smooth' }); }
         }
 
-        let isSliderInitialized = false; // 사진 세팅 여부 확인용 변수 추가
+        // Swiper 라이브러리 스크립트 불러오기
+        const swiperScript = document.createElement('script');
+        swiperScript.src = "https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js";
+        document.body.appendChild(swiperScript);
+
+        let swiperInstance = null;
+        let isSliderInitialized = false;
 
         function openSlider(idx) {
-            currentIdx = idx; 
-            
-            // 렉 해결 핵심: 매번 17장을 새로 만들지 않고, 최초 1회만 만들어서 재사용!
+            document.getElementById('galleryModal').style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // 뒤에 본문 스크롤 방지
+
+            // 최초 1회만 실행
             if (!isSliderInitialized) {
-                sliderWrapper.innerHTML = ''; 
+                const wrapper = document.getElementById('swiperWrapper');
+                const galleryImgs = document.querySelectorAll('.gallery-grid img');
+                
                 galleryImgs.forEach(img => {
-                    const div = document.createElement('div'); 
-                    div.classList.add('slide');
-                    const newImg = document.createElement('img'); 
+                    const slide = document.createElement('div');
+                    slide.className = 'swiper-slide';
+                    slide.style.cssText = 'display: flex; align-items: center; justify-content: center; overflow: hidden;';
+                    
+                    const zoomContainer = document.createElement('div');
+                    zoomContainer.className = 'swiper-zoom-container';
+                    
+                    const newImg = document.createElement('img');
                     newImg.src = img.src;
-                    newImg.loading = "lazy"; // 화면에 안 보이는 사진은 렌더링 늦춤 (메모리 절약)
-                    div.appendChild(newImg); 
-                    sliderWrapper.appendChild(div);
+                    newImg.style.cssText = 'max-width: 100%; max-height: 85vh; object-fit: contain;';
+                    
+                    zoomContainer.appendChild(newImg);
+                    slide.appendChild(zoomContainer);
+                    wrapper.appendChild(slide);
+                });
+
+                swiperInstance = new Swiper(".mySwiper", {
+                    initialSlide: idx,
+                    spaceBetween: 10,
+                    loop: true,
+                    zoom: true,
+                    pagination: { el: ".swiper-pagination", type: "fraction" },
+                    navigation: { nextEl: ".swiper-button-next", prevEl: ".swiper-button-prev" },
                 });
                 isSliderInitialized = true;
+            } else {
+                swiperInstance.slideToLoop(idx, 0);
             }
+        }
 
-            document.getElementById('galleryModal').style.display = 'flex'; 
-            
-            // 모달을 열 때 첫 장부터 촤르륵 넘어가는 애니메이션 방지 (즉시 이동)
-            sliderWrapper.style.transition = 'none';
-            updateSlider();
-            
-            // 창이 열린 직후부터 다시 부드러운 스와이프 애니메이션 활성화
-            setTimeout(() => {
-                sliderWrapper.style.transition = 'transform 0.3s ease-out';
-            }, 50);
+        function closeSlider(e) {
+            if (!e || e.target.classList.contains('modal-overlay') || e.target.innerText === '×') {
+                document.getElementById('galleryModal').style.display = 'none';
+                document.body.style.overflow = 'auto'; // 뒤에 본문 스크롤 원상복구
+            }
         }
         
-        function closeSlider() { document.getElementById('galleryModal').style.display = 'none'; }
-        function moveSlide(n) { currentIdx += n; if (currentIdx >= galleryImgs.length) currentIdx = 0; if (currentIdx < 0) currentIdx = galleryImgs.length - 1; updateSlider(); }
-        function updateSlider() { sliderWrapper.style.transform = `translateX(-${currentIdx * 100}%)`; }
-
-        // 스와이프 및 두 손가락 확대 + 상하좌우 이동(패닝) 완벽 적용
-        let startX = 0;
-        let initialDistance = 0;
-        let currentScale = 1;
-        let isZooming = false; 
-
-        // 두 손가락 중심점 추적용 변수 (상하좌우 이동을 위함)
-        let initialCenterX = 0;
-        let initialCenterY = 0;
-        let translateX = 0;
-        let translateY = 0;
-
-        const galleryModal = document.getElementById('galleryModal');
-
-        galleryModal.addEventListener('touchstart', e => {
-            if (e.touches.length === 2) {
-                isZooming = true;
-                
-                // 두 손가락 사이의 최초 거리
-                initialDistance = Math.hypot(
-                    e.touches[0].pageX - e.touches[1].pageX,
-                    e.touches[0].pageY - e.touches[1].pageY
-                );
-                
-                // 두 손가락의 최초 중심점 (어디를 짚었는지)
-                initialCenterX = (e.touches[0].clientX + e.touches[1].clientX) / 2;
-                initialCenterY = (e.touches[0].clientY + e.touches[1].clientY) / 2;
-            } else if (e.touches.length === 1 && !isZooming) {
-                startX = e.touches[0].clientX;
-            }
-        });
-
-        galleryModal.addEventListener('touchmove', e => {
-            if (e.touches.length === 2) {
-                isZooming = true;
-                e.preventDefault(); // 스크롤 방지
-                
-                // 현재 두 손가락 사이의 거리
-                const currentDistance = Math.hypot(
-                    e.touches[0].pageX - e.touches[1].pageX,
-                    e.touches[0].pageY - e.touches[1].pageY
-                );
-                
-                // 현재 두 손가락의 중심점
-                const currentCenterX = (e.touches[0].clientX + e.touches[1].clientX) / 2;
-                const currentCenterY = (e.touches[0].clientY + e.touches[1].clientY) / 2;
-                
-                // 중심점이 이동한 만큼 사진도 이동시킴 (패닝)
-                translateX = currentCenterX - initialCenterX;
-                translateY = currentCenterY - initialCenterY;
-                
-                // 확대 배율 적용 (최대 4배까지)
-                currentScale = currentDistance / initialDistance;
-                currentScale = Math.max(1, Math.min(currentScale, 4)); 
-                
-                const activeImg = document.querySelectorAll('.slide img')[currentIdx];
-                if (activeImg) {
-                    // 확대와 이동을 동시에 적용
-                    activeImg.style.transform = `translate(${translateX}px, ${translateY}px) scale(${currentScale})`;
-                    activeImg.style.transition = 'none';
-                }
-            }
-        }, { passive: false });
-
-        galleryModal.addEventListener('touchend', e => {
-            const activeImg = document.querySelectorAll('.slide img')[currentIdx];
-            
-            if (isZooming) {
-                // 손을 떼면 크기와 위치 모두 원래대로 쏙 돌아오기 (Snap-back)
-                if (activeImg) {
-                    activeImg.style.transform = 'translate(0px, 0px) scale(1)';
-                    activeImg.style.transition = 'transform 0.3s ease-out';
-                }
-                
-                // 변수 초기화
-                currentScale = 1;
-                translateX = 0;
-                translateY = 0;
-
-                // 손가락이 화면에서 모두 떨어지면 안전장치 해제
-                if (e.touches.length === 0) {
-                    setTimeout(() => { isZooming = false; }, 100); 
-                }
-                return; 
-            }
-
-            // 확대를 안 한 상태에서 한 손가락으로 밀었을 때만 이전/다음 사진 넘기기
-            if (!isZooming && e.changedTouches.length === 1) {
-                let endX = e.changedTouches[0].clientX;
-                if (startX - endX > 50) moveSlide(1);  
-                if (endX - startX > 50) moveSlide(-1); 
-            }
-        });
     </script>
 
    <script type="module">
